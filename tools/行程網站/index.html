@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>義大利 12 天行程 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#fafaf8;color:#2c3e50}
+.nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #e8e8e4;display:flex;align-items:center;justify-content:space-between;padding:0 5%;z-index:100}
+.nav-logo{font-weight:700;color:#4a90d9;font-size:1.1rem}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{text-decoration:none;color:#7f8c8d;padding:8px 14px;border-radius:8px;font-size:0.85rem;cursor:pointer}
+.nav-links a:hover{color:#4a90d9;background:#e8f4fd}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5)}
+.hero-content{position:relative;z-index:1;color:#fff}
+.hero-content h1{font-size:clamp(2rem,5vw,4rem);margin-bottom:8px}
+.hero-content p{color:rgba(255,255,255,0.85);font-size:1rem}
+.hero-scroll{margin-top:40px;color:rgba(255,255,255,0.6);cursor:pointer;font-size:0.9rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.section{padding:60px 5%;max-width:1200px;margin:0 auto}
+.section-title{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:8px}
+.section-subtitle{text-align:center;color:#7f8c8d;margin-bottom:40px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.day-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);padding:24px;cursor:pointer;transition:all 0.3s;border:1px solid #e8e8e4}
+.day-card:hover{transform:translateY(-4px);box-shadow:0 8px 35px rgba(0,0,0,0.12);border-color:#4a90d9}
+.day-emoji{font-size:2.5rem;margin-bottom:8px}
+.day-number{font-size:0.75rem;color:#4a90d9;font-weight:600;letter-spacing:2px;margin-bottom:4px}
+.day-card h3{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.day-region{color:#4a90d9;font-size:0.85rem;margin-bottom:8px}
+.day-desc{color:#7f8c8d;font-size:0.9rem;line-height:1.5}
+.detail-wrap{display:none}.detail-wrap.show{display:block}
+.detail-header{position:relative;height:45vh;min-height:300px;display:flex;align-items:flex-end;padding:30px 5%;color:#fff}
+.detail-header-bg{position:absolute;inset:0}
+.detail-header-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5)}
+.detail-header-content{position:relative;z-index:1;width:100%;max-width:1000px;margin:0 auto}
+.back-btn{color:rgba(255,255,255,0.8);text-decoration:none;cursor:pointer;border:none;background:none;padding:0;margin-bottom:16px;display:block;font-size:0.9rem}
+.detail-header h1{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:6px}
+.detail-body{max-width:1000px;margin:0 auto;padding:30px 5%}
+.info-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);padding:24px;margin-bottom:24px;border:1px solid #e8e8e4}
+.info-card h2{font-size:1.2rem;font-weight:700;margin-bottom:16px}
+.timeline{padding-left:24px;border-left:2px solid #e8f4fd}
+.timeline-item{padding:0 0 16px 20px;position:relative}
+.timeline-item::before{content:'';position:absolute;left:-28px;top:4px;width:10px;height:10px;background:#4a90d9;border-radius:50%}
+.timeline-item .time{font-weight:600;color:#4a90d9;font-size:0.85rem}
+.timeline-item .activity{font-weight:600}
+.timeline-item .note{color:#7f8c8d;font-size:0.85rem}
+.transport-item{display:flex;gap:12px;padding:10px;background:#e8f4fd;border-radius:10px;margin-bottom:8px;font-size:0.9rem}
+.transport-item .mode{font-weight:600;min-width:90px}
+.attractions-list{margin-top:16px}
+.attraction-item{margin-bottom:16px}
+.attraction-item h3{font-size:1rem;color:#4a90d9;margin-bottom:4px}
+.attraction-item p{color:#7f8c8d;font-size:0.9rem;line-height:1.6}
+.attraction-item .tip{background:#fff9db;border-left:3px solid #f1c40f;padding:8px 12px;border-radius:0 10px 10px 0;font-size:0.85rem;color:#7f6000;margin-top:6px}
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.food-card{background:#e8f4fd;border-radius:10px;padding:14px}
+.food-type{font-size:0.75rem;color:#4a90d9;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.food-card h4{font-size:0.95rem;margin:4px 0}
+.food-recommend{font-size:0.85rem;color:#7f8c8d}
+.food-price{font-size:0.8rem;color:#4a90d9;font-weight:500;margin-top:4px}
+.hotel-card{display:flex;gap:12px;align-items:flex-start;font-size:0.95rem}
+.hotel-card h3{font-size:1rem;margin-bottom:2px}
+.hotel-addr{color:#7f8c8d;font-size:0.85rem}
+.hotel-note{color:#4a90d9;font-size:0.85rem;margin-top:4px}
+.tips-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tips-list li{padding:8px 12px;background:#fef9e7;border-radius:10px;font-size:0.9rem}
+.tips-list li::before{content:'\1F4A1 '}
+.map-wrap{border-radius:12px;overflow:hidden}
+.map-wrap iframe{width:100%;height:350px;border:none}
+.back-top{position:fixed;bottom:24px;right:24px;width:48px;height:48px;background:#4a90d9;color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;opacity:0;visibility:hidden;transition:all 0.3s;z-index:99;box-shadow:0 4px 15px rgba(74,144,217,0.4)}
+.back-top.show{opacity:1;visibility:visible}
+@media(max-width:768px){
+  .day-grid{grid-template-columns:1fr}
+  .food-grid{grid-template-columns:1fr}
+  .map-wrap iframe{height:250px}
+  .detail-header{height:30vh;min-height:200px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">&#9992;&#65039; Italy 2026</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="goHome()">&#127968; 首頁</a></li>
+    <li><a href="#" onclick="goOverview()">&#128203; 行程總覽</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1600" alt="Italy">
+  </div>
+  <div class="hero-content">
+    <h1>&#127470;&#127475; 義大利 12 天</h1>
+    <p>親子仲夏之旅 · 南進北出全攻略</p>
+    <p style="margin-top:8px;letter-spacing:2px">2026.07.22 — 2026.08.02</p>
+    <div class="hero-scroll" onclick="goOverview()">&#8595; 向下探索 &#8595;</div>
+  </div>
+</section>
+
+<section class="section" id="overview">
+  <h2 class="section-title">&#128203; 完整行程</h2>
+  <p class="section-subtitle">從羅馬到米蘭，12 天 4 座城市的完美旅程</p>
+  <div class="day-grid" id="dayGrid"></div>
+</section>
+
+<div id="detailWrap"></div>
+
+<button class="back-top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+// ============ DATA ============
+const D = [
+{day:1,date:"2026-07-22",dw:"週三",title:"羅馬",sub:"初見永恆之城",region:"羅馬",emo:"&#127959;&#65039;",
+sum:"抵達羅馬，適應時差，感受永恆之城的氛圍。",
+high:["西班牙階梯早晨拍照（人潮最少）","特雷維許願池擲硬幣許願","第一杯道地 Gelato 冰淇淋"],
+schedule:[
+["06:25-07:45","抵達 Fiumicino 機場 &#10145; 入境領行李","預留 1.5 小時通關"],
+["08:00-09:00","機場快線 &#10145; Termini &#10145; 住宿點寄放行李","Leonardo Express 直達"],
+["09:00-10:00","義式早餐體驗 @ Bar del Gambero","站著喝 Cappuccino 配可頌"],
+["10:00-12:00","晨間散步：西班牙階梯 & 許願池","趁沒人時盡情拍照！"],
+["12:00-13:30","午餐時光","附近隨意享用輕食或 Pizza"],
+["14:00-17:00","Check-in & 補眠","強烈建議睡個午覺調整時差"],
+["17:00-17:30","天使與殉教者聖母教堂","參拜貝尼尼天使"],
+["17:30-18:00","Gelato 時光 @ La Strega Nocciola","晚餐前的幸福甜點"],
+["18:00-19:30","晚餐 @ Pastificio Guerra","簡單吃，享受羅馬夜晚氛圍"],
+["20:00-20:30","超市採買 & 回飯店","買水、水果、早餐"],
+["21:00 ~","休息","第一天別太晚睡"]
+],
+trans:[["&#9992;&#65039; 飛機","桃園機場 &#10145; 羅馬 Fiumicino 機場"],
+["&#128646; 機場快線","Leonardo Express：Fiumicino &#10145; Termini，&#8364;14，32 分鐘"],
+["&#128647; 地鐵","Termini 搭 Metro A 線往 Battistini，Spagna 站下車"],
+["&#128694; 步行","各景點之間 5-10 分鐘路程"]],
+attr:[
+["西班牙階梯 Spanish Steps","羅馬最經典的電影場景。早晨 10 點前人潮最少，是最佳拍照時機。","旁邊有羅馬第一家麥當勞，Tiramisu 意外好吃！","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"],
+["特雷維許願池 Trevi Fountain","羅馬最大最華麗的巴洛克噴泉。背對噴泉用右手向左肩後方拋硬幣。","建議走到噴泉右側角落，人比較少","https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600"],
+["天使與殉教者聖母教堂","收藏貝尼尼親手雕刻的天使像，免費入場的藝術寶庫。","氣氛神聖寧靜，是避開人潮的好去處","https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600"]
+],
+food:[["Bar del Gambero","早餐","Cappuccino + Cornetto","&#8364;3-5"],["La Strega Nocciola","Gelato","榛果與開心果口味","&#8364;3-5"],["Pastificio Guerra","晚餐","每日兩種現煮生麵","約 &#8364;5"]],
+hotel:"西班牙階梯附近住宿（Spagna 站周邊）",
+tips:["穿厚底好走的球鞋，羅馬石板路多","帶空水壺，街頭 Nasone 小噴泉可生飲","後背包請背前面，注意防範扒手"],
+map:"https://www.google.com/maps/embed?q=Spanish+Steps+Rome+Italy"},
+
+{day:2,date:"2026-07-23",dw:"週四",title:"羅馬",sub:"神鬼戰士與古城巡禮",region:"羅馬",emo:"&#9876;&#65039;&#65039;",
+sum:"穿越時空回到古羅馬帝國，朝聖壯觀的競技場。",
+high:["羅馬競技場內部參觀","萬神殿的壯麗穹頂","品嚐金杯咖啡"],
+schedule:[
+["08:00-09:00","早餐 @ 住宿附近","早點出發"],
+["09:00-12:00","羅馬競技場 & 古羅馬廣場","建議提前預約門票"],
+["12:00-13:30","午餐 @ 附近餐廳","品嚐地道義大利麵"],
+["14:00-16:00","萬神殿參觀","欣賞古羅馬建築奇蹟"],
+["16:00-17:00","金杯咖啡 Tazza d'Oro","羅馬最有名的咖啡店"],
+["17:00-18:30","納沃納廣場漫步","欣賞四河噴泉"],
+["19:00-20:30","晚餐","品嚐羅馬經典料理"]
+],
+trans:[["&#128694; 步行","從西班牙階梯步行至競技場約 25 分鐘"],["&#128647; 地鐵","搭 Metro B 線至 Colosseo 站"],["&#128694; 步行","競技場至萬神殿約 15 分鐘"]],
+attr:[["羅馬競技場 Colosseum","古羅馬帝國最具代表性的建築。建議提前在官網預約門票。","建議購買聯票：競技場 + 古羅馬廣場 + 帕拉提諾山","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"],["萬神殿 Pantheon","保存最完整的古羅馬建築，混凝土穹頂至今仍是世界最大。","免費入場，建議下午前往光線最美","https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600"]],
+food:[["Tazza d'Oro","咖啡","Granita al Caffè 咖啡冰沙","&#8364;3-5"],["Da Enrico al 29","午餐","Carbonara 義大利麵","&#8364;12-18"]],
+hotel:"西班牙階梯附近住宿（續住）",
+tips:["競技場門票務必提前預約","注意防曬，七月羅馬非常炎熱","隨身帶水壺補充水分"],
+map:"https://www.google.com/maps/embed?q=Colosseum+Rome+Italy"},
+
+{day:3,date:"2026-07-24",dw:"週五",title:"羅馬",sub:"梵蒂岡神聖之旅",region:"羅馬",emo:"&#127475;&#127466;",
+sum:"上午梵蒂岡聖彼得大教堂，下午博物館，傍晚購物。",
+high:["聖彼得大教堂登頂俯瞰梵蒂岡","梵蒂岡博物館西斯汀禮拜堂","西班牙廣場購物區漫遊"],
+schedule:[
+["07:30-08:00","早餐","早點出發避開人潮"],
+["08:00-10:30","聖彼得大教堂","登頂看梵蒂岡全景"],
+["10:30-11:00","聖彼得廣場","感受梵蒂岡的莊嚴"],
+["11:00-12:30","午餐 @ 梵蒂岡附近","品嚐在地美食"],
+["14:00-16:30","梵蒂岡博物館","欣賞西斯汀禮拜堂創世紀"],
+["17:00-19:00","西班牙廣場購物區","漫步名牌大街"],
+["19:30-21:00","晚餐","羅馬最後一頓豐盛晚餐"]
+],
+trans:[["&#128647; 地鐵","Spagna 站搭 Metro A 線至 Ottaviano 站"],["&#128694; 步行","聖彼得大教堂至博物館步行約 10 分鐘"]],
+attr:[["聖彼得大教堂 St. Peter's Basilica","世界上最大的教堂，天主教會的中心。","早上 8 點前到可避開排隊人潮","https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600"],["梵蒂岡博物館 Vatican Museums","收藏教宗歷代累積的藝術珍品。","門票需提前預約","https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600"]],
+food:[["Bonci Pizzarium","午餐","Pizza al taglio 秤重披薩","&#8364;5-10"],["Old Bridge Gelateria","Gelato","各式口味 Gelato","&#8364;3-5"]],
+hotel:"西班牙階梯附近住宿（最後一晚）",
+tips:["進聖彼得大教堂需安檢，不可穿短褲背心","梵蒂岡博物館很大，建議規劃路線"],
+map:"https://www.google.com/maps/embed?q=St+Peter+Basilica+Vatican"},
+
+{day:4,date:"2026-07-25",dw:"週六",title:"佛羅倫斯",sub:"前往文藝復興發源地",region:"佛羅倫斯",emo:"&#127912;",
+sum:"搭乘高速火車北上佛羅倫斯，初探百花大教堂。",
+high:["義大利高鐵 Italo 初體驗","百花大教堂外觀震撼","老橋日落漫步"],
+schedule:[
+["08:00-09:00","早餐 & Check-out","整理行李"],
+["09:30-11:00","高速火車：羅馬 &#10145; 佛羅倫斯","Italo / Frecciarossa"],
+["11:00-11:30","抵達 Firenze S.M.N. 車站","步行至住宿點寄放行李"],
+["11:30-13:00","午餐 @ 中央市場","品嚐佛羅倫斯牛肚包"],
+["13:00-15:00","百花大教堂外觀 & 喬托鐘樓","洗禮堂金門必看"],
+["17:00-19:00","老橋漫步 & 亞諾河畔","欣賞日落美景"],
+["19:30-21:00","晚餐 @ 在地 trattoria","品嚐佛羅倫斯牛排"]
+],
+trans:[["&#128646; 高速火車","Roma Termini &#10145; Firenze S.M.N.，約 1.5 小時"],["&#128694; 步行","佛羅倫斯市區景點皆可步行"]],
+attr:[["聖母百花大教堂 Duomo","佛羅倫斯地標，世界最大的磚造穹頂。外牆三色大理石拼成。","外觀免費，登頂需購票","https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=600"],["老橋 Ponte Vecchio","佛羅倫斯最古老的橋樑，橋上珠寶店與藝廊。","傍晚最浪漫，欣賞亞諾河日落","https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=600"]],
+food:[["Nerbone","午餐","牛肚包 Panino con Lampredotto","&#8364;5-8"],["Trattoria ZaZa","晚餐","佛羅倫斯牛排","&#8364;25-35"]],
+hotel:"佛羅倫斯 SMN 車站附近（步行 10 分鐘）",
+tips:["義大利高鐵建議提前上網購票","佛羅倫斯石板路多，行李箱輪子要夠耐用","牛肚包是佛羅倫斯必吃街頭美食"],
+map:"https://www.google.com/maps/embed?q=Duomo+Florence+Italy"},
+
+{day:5,date:"2026-07-26",dw:"週日",title:"佛羅倫斯",sub:"烏菲茲藝術殿堂",region:"佛羅倫斯",emo:"&#128397;&#65039;",
+sum:"沉浸波提切利名作，挑戰圓頂攀登。",
+high:["烏菲茲美術館《維納斯的誕生》","百花大教堂圓頂攀登 463 階","老橋夕陽美景"],
+schedule:[
+["08:00-09:00","早餐","吃得飽飽的準備爬圓頂"],
+["09:00-12:00","烏菲茲美術館","建議提前預約門票"],
+["12:00-13:30","午餐","美術館附近餐廳"],
+["13:30-15:00","百花大教堂圓頂攀登","463 階，俯瞰佛羅倫斯"],
+["15:00-17:00","學院美術館（大衛像）","可選，或自由逛街"],
+["17:00-18:30","老橋夕陽","漫步亞諾河畔"],
+["19:00-20:30","晚餐","佛羅倫斯經典料理"]
+],
+trans:[["&#128694; 步行","全部景點步行可達"]],
+attr:[["烏菲茲美術館 Uffizi Gallery","世界最重要的美術館之一，收藏波提切利《維納斯的誕生》。","務必提前預約門票","https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=600"],["百花大教堂圓頂 Brunelleschi's Dome","布魯內萊斯基設計的傳奇圓頂，攀登 463 階。","階梯狹窄陡峭，有懼高症請考慮","https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=600"]],
+food:[["All'Antico Vinaio","午餐","Schiacciata 義大利三明治","&#8364;8-12"],["Gelateria dei Neri","Gelato","各式手工冰淇淋","&#8364;3-5"]],
+hotel:"佛羅倫斯 SMN 車站附近（續住）",
+tips:["烏菲茲門票需提前 1-2 週預約","爬圓頂穿輕便衣物與好走的鞋","佛羅倫斯皮件市集可逛逛"],
+map:"https://www.google.com/maps/embed?q=Uffizi+Gallery+Florence+Italy"},
+
+{day:6,date:"2026-07-27",dw:"週一",title:"比薩",sub:"斜塔奇蹟與夕陽",region:"托斯卡納",emo:"&#127982;",
+sum:"上午比薩看斜塔，傍晚米開朗基羅廣場夕陽。",
+high:["比薩斜塔經典合影","奇蹟廣場三大建築","米開朗基羅廣場俯瞰佛羅倫斯"],
+schedule:[
+["07:00-08:00","早餐","早點出發"],
+["08:00-09:00","火車：佛羅倫斯 &#10145; 比薩","約 1 小時"],
+["09:00-12:00","比薩斜塔 & 奇蹟廣場","拍照、參觀"],
+["12:00-13:00","午餐 @ 比薩","當地美食"],
+["13:00-14:00","火車：比薩 &#10145; 佛羅倫斯",""],
+["14:00-16:00","中央市場美食探索","二樓美食廣場"],
+["17:00-19:00","米開朗基羅廣場夕陽","俯瞰佛羅倫斯全景"],
+["19:30-21:00","晚餐",""]
+],
+trans:[["&#128646; 區域火車","Firenze S.M.N. &#10145; Pisa Centrale，約 1 小時"],["&#128694; 步行","比薩車站步行至斜塔約 20 分鐘"]],
+attr:[["比薩斜塔 Leaning Tower of Pisa","世界聞名的建築奇蹟，因地基不均勻傾斜。","經典拍照姿勢是「推塔」！","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"],["米開朗基羅廣場 Piazzale Michelangelo","俯瞰佛羅倫斯全景最佳地點，夕陽時分景色無敵。","傍晚前往，帶瓶酒坐在階梯上等日落","https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=600"]],
+food:[["Mercato Centrale 二樓","美食廣場","各種托斯卡納美食","&#8364;8-15"],["La Prosciutteria","晚餐","托斯卡納火腿拼盤","&#8364;10-18"]],
+hotel:"佛羅倫斯 SMN 車站附近（續住）",
+tips:["比薩斜塔登塔需預約且限制人數","佛羅倫斯到比薩區域火車班次頻繁","米開朗基羅廣場可搭 12 路公車"],
+map:"https://www.google.com/maps/embed?q=Leaning+Tower+of+Pisa+Italy"},
+
+{day:7,date:"2026-07-28",dw:"週二",title:"威尼斯",sub:"水都的浪漫相遇",region:"威尼斯",emo:"&#127917;",
+sum:"告別托斯卡納，前進夢幻水都威尼斯。",
+high:["威尼斯本島第一印象","聖馬可廣場與大教堂","嘆息橋夜景漫步"],
+schedule:[
+["07:00-08:00","早餐 & Check-out",""],
+["08:00-10:00","高速火車：佛羅倫斯 &#10145; 威尼斯","約 2 小時"],
+["10:00-10:30","抵達 Venezia S. Lucia","出站即是大運河"],
+["10:30-11:00","水上巴士 &#10145; 住宿點","寄放行李"],
+["11:00-12:30","聖馬可廣場 & 大教堂","感受水都風情"],
+["12:30-14:00","午餐","威尼斯海鮮料理"],
+["17:00-19:00","嘆息橋 & 運河漫步","傍晚光線最美"],
+["19:30-21:00","晚餐 @ 運河邊餐廳","浪漫水都晚餐"]
+],
+trans:[["&#128646; 高速火車","Firenze S.M.N. &#10145; Venezia S. Lucia，約 2 小時"],["&#128674; 水上巴士","威尼斯主要公共交通工具"],["&#128694; 步行","本島各景點步行可達"]],
+attr:[["聖馬可廣場 Piazza San Marco","拿破崙譽為「歐洲最美客廳」。廣場上有聖馬可大教堂、鐘樓。","早上與傍晚人潮較少","https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600"],["嘆息橋 Bridge of Sighs","連接總督府與監獄的封閉橋樑。","傍晚夕陽時分拍照最佳","https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600"]],
+food:[["Trattoria Al Gazzettino","晚餐","墨魚麵 Spaghetti al Nero di Seppia","&#8364;15-25"],["Caffe Florian","咖啡","聖馬可廣場百年咖啡館","&#8364;10-15"]],
+hotel:"威尼斯本島住宿（聖馬可廣場步行 10 分）",
+tips:["威尼斯本島全靠步行與船","水上巴士可買 24/48/72 小時券","注意潮汐，聖馬可廣場可能會淹水"],
+map:"https://www.google.com/maps/embed?q=St+Mark+Square+Venice+Italy"},
+
+{day:8,date:"2026-07-29",dw:"週三",title:"威尼斯",sub:"彩色島童話與貢多拉",region:"威尼斯",emo:"&#127752;",
+sum:"彩色島拍照，下午貢多拉船遊。",
+high:["Burano 彩色房屋拍照","貢多拉船遊大運河","里亞爾托橋黃昏市場"],
+schedule:[
+["07:30-08:30","早餐",""],
+["08:30-09:30","水上巴士前往彩色島","約 40 分鐘"],
+["09:30-12:00","彩色島 Burano 漫步","拍照、逛小店"],
+["12:00-13:00","午餐 @ 彩色島","海鮮料理"],
+["13:00-14:00","水上巴士回本島",""],
+["14:00-16:00","貢多拉船遊","體驗威尼斯傳統交通"],
+["16:00-18:00","里亞爾托橋 & 市場","逛街購物"],
+["19:00-20:30","晚餐",""]
+],
+trans:[["&#128674; 水上巴士","威尼斯 &#10145; Burano（彩色島），約 40 分鐘"],["&#128675; 貢多拉","傳統手划船，建議下午或傍晚搭乘"]],
+attr:[["彩色島 Burano","以色彩繽紛的漁夫房屋聞名的小島。每年重新粉刷形成彩虹景觀。","建議早上前往，光線最佳","https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600"],["貢多拉船遊 Gondola Ride","威尼斯最具代表性的交通工具。","建議傍晚搭乘，光線柔和","https://images.unsplash.com/photo-1525874684015-58379d421a52?w=600"]],
+food:[["Trattoria da Romano","午餐","海鮮燉飯","&#8364;15-25"],["Osteria alle Testiere","晚餐","威尼斯式海鮮拼盤","&#8364;25-35"]],
+hotel:"威尼斯本島住宿（續住）",
+tips:["彩色島建議早去早回","貢多拉公定價約 &#8364;80/30 分鐘","里亞爾托市場買新鮮食材與紀念品"],
+map:"https://www.google.com/maps/embed?q=Burano+Venice+Italy"},
+
+{day:9,date:"2026-07-30",dw:"週四",title:"米蘭",sub:"前進時尚之都",region:"米蘭",emo:"&#9749;",
+sum:"搭火車前往米蘭，輕鬆市區漫步。",
+high:["艾曼紐二世拱廊精美建築","星巴克臻選烘焙工坊","米蘭購物街區初探"],
+schedule:[
+["07:30-08:30","早餐 & Check-out",""],
+["08:30-10:30","高速火車：威尼斯 &#10145; 米蘭","約 2 小時"],
+["10:30-11:00","抵達 Milano Centrale","步行或地鐵至住宿"],
+["11:30-13:00","艾曼紐二世拱廊","欣賞華麗建築與逛街"],
+["13:00-14:30","午餐",""],
+["14:30-16:00","星巴克臻選烘焙工坊","全球第三家 Reserve Roastery"],
+["18:00-20:00","晚間散步 & 晚餐","米蘭夜生活初體驗"]
+],
+trans:[["&#128646; 高速火車","Venezia S. Lucia &#10145; Milano Centrale，約 2 小時"],["&#128647; 地鐵","Centrale 可搭 M2/M3 線至大教堂區"],["&#128694; 步行","米蘭市中心步行可達"]],
+attr:[["艾曼紐二世拱廊 Galleria","義大利最古老的購物拱廊，玻璃穹頂與馬賽克地板。","踩公牛睪丸旋轉會帶來好運","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"],["星巴克臻選烘焙工坊","全球僅六家旗艦級星巴克。","推薦限定版咖啡調酒","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"]],
+food:[["Luini","輕食","Panzerotti 義大利炸餃","&#8364;4-6"],["Spontini","Pizza","厚片米蘭式 Pizza","&#8364;6-10"]],
+hotel:"米蘭中央車站附近（步行 10 分鐘）",
+tips:["米蘭大教堂區扒手較多，注意財物","艾曼紐拱廊地板馬賽克是拍照重點","Luini Panzerotti 排隊名店"],
+map:"https://www.google.com/maps/embed?q=Galleria+Vittorio+Emanuele+II+Milan+Italy"},
+
+{day:10,date:"2026-07-31",dw:"週五",title:"米蘭",sub:"米蘭大教堂深度遊",region:"米蘭",emo:"&#9962;",
+sum:"上午米蘭大教堂登頂，欣賞飛扶壁。",
+high:["米蘭大教堂屋頂平台漫步","飛扶壁與尖塔近距離觀賞","大教堂內部彩繪玻璃窗"],
+schedule:[
+["08:00-09:00","早餐",""],
+["10:00-12:00","米蘭大教堂登頂","步行登頂，欣賞飛扶壁"],
+["12:00-13:00","大教堂內部參觀","彩繪玻璃與地下遺蹟"],
+["13:00-14:30","午餐",""],
+["14:30-17:00","自由活動","逛街、博物館或咖啡時光"],
+["17:00-19:00","米蘭最後漫步","採購紀念品"],
+["19:30-21:00","告別晚餐","米蘭最後一頓"]
+],
+trans:[["&#128647; 地鐵","Duomo 站（M1/M3 線交會）"],["&#128694; 步行","米蘭市中心步行"]],
+attr:[["米蘭大教堂 Duomo di Milano","世界最大的哥德式教堂之一，135 座尖塔與超過 3000 座雕像。","建議購買電梯登頂票節省體力","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"]],
+food:[["Piz","午餐","米蘭式燉飯 Risotto alla Milanese","&#8364;12-18"],["Cioccolatitaliani","甜點","手工巧克力 & Gelato","&#8364;4-8"]],
+hotel:"米蘭中央車站附近（續住）",
+tips:["登頂建議電梯方案（步行很陡）","進教堂不可穿短褲露肩","屋頂平台風大注意保暖"],
+map:"https://www.google.com/maps/embed?q=Duomo+di+Milano+Italy"},
+
+{day:11,date:"2026-08-01",dw:"週六",title:"米蘭",sub:"城堡探險與最後衝刺",region:"米蘭",emo:"&#127984;",
+sum:"參觀斯福爾扎城堡，購物大街最後採購。",
+high:["斯福爾扎城堡博物館","米開朗基羅最後的雕塑","Corso Buenos Aires 購物"],
+schedule:[["08:00-09:00","悠閒早餐",""],["09:00-12:00","斯福爾扎城堡參觀","城堡博物館與庭園"],["12:00-13:30","午餐",""],["13:30-17:00","Corso Buenos Aires 購物","米蘭最長購物街"],["17:00-19:00","整理行李",""],["19:00-21:00","最後晚餐","告別義大利"]],
+trans:[["&#128647; 地鐵","Cairoli Castello 站（M1）或 Lanza 站（M2）"],["&#128647; 地鐵","Corso Buenos Aires 搭 M1 至 Porta Venezia"]],
+attr:[["斯福爾扎城堡 Castello Sforzesco","米蘭最大的城堡，收藏米開朗基羅最後雕塑《聖母憐子》。","城堡後方森皮奧內公園適合散步","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"]],
+food:[["Ratanà","晚餐","米蘭經典料理","&#8364;20-30"],["Pavé","早午餐","可頌與咖啡","&#8364;5-10"]],
+hotel:"米蘭中央車站附近（最後一晚）",
+tips:["城堡免費入場，博物館需購票","記得退稅單據要整理好","超市可買些義大利食材帶回台灣"],
+map:"https://www.google.com/maps/embed?q=Sforza+Castle+Milan+Italy"},
+
+{day:12,date:"2026-08-02",dw:"週日",title:"米蘭",sub:"載著回憶回家去",region:"米蘭",emo:"&#9992;&#65039;",
+sum:"早起出發前往機場，辦理退稅手續。",
+high:["Malpensa 機場退稅","免稅店最後採購","帶著 12 天滿滿回憶回家"],
+schedule:[["05:00-05:30","起床 & 最後檢查","確認護照、機票"],["05:30-06:00","前往 Milano Centrale",""],["06:00-07:00","Malpensa Express 往機場","約 50 分鐘"],["07:00-08:00","Check-in & 托運行李",""],["08:00-09:00","退稅手續","保留退稅單據"],["09:00-10:00","免稅店最後採購",""],["10:00 ~","登機回台灣","Buon Viaggio！"]],
+trans:[["&#128646; Malpensa Express","Milano Centrale &#10145; Malpensa Airport，50 分鐘，&#8364;13"],["&#9992;&#65039; 飛機","米蘭 Malpensa &#10145; 桃園機場"]],
+attr:[["米蘭 Malpensa 機場","米蘭主要國際機場。退稅分托運退稅與手提退稅。","退稅單據需在 check-in 前給海關蓋章","https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600"]],
+food:[["機場免稅區","最後採購","義大利紅酒、橄欖油、巧克力","視預算"]],
+hotel:"回到溫暖的家（台灣）",
+tips:["退稅商品需隨身備查","Malpensa Express 早班車票建議先買","保留退稅單據影本"],
+map:"https://www.google.com/maps/embed?q=Malpensa+Airport+Milan+Italy"}
+];
+
+// ============ RENDER ============
+const grid = document.getElementById('dayGrid');
+const wrap = document.getElementById('detailWrap');
+
+D.forEach(d => {
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.innerHTML = '<div class="day-emoji">'+d.emo+'</div><div class="day-number">DAY '+d.day+'</div><h3>'+d.title+'｜'+d.sub+'</h3><div class="day-region">📍 '+d.region+'</div><div class="day-desc">'+d.sum+'</div>';
+  card.onclick = function(){showDay(d.day)};
+  grid.appendChild(card);
+
+  // build images for attr
+  var imgs = '';
+  d.attr.forEach(function(a,i){
+    imgs += '<img class="cimg'+(i===0?' on':'')+'" src="'+a[3]+'" data-i="'+i+'" style="display:'+(i===0?'block':'none')+';width:100%;height:280px;object-fit:cover;border-radius:10px">';
+  });
+  var btns = d.attr.length>1 ? '<button class="cbp" onclick="cmove('+d.day+',-1)">&#139;</button><button class="cbn" onclick="cmove('+d.day+',1)">&#155;</button>' : '';
+  var carousel = '<div style="position:relative;margin-bottom:16px">'+imgs+btns+'</div>';
+
+  var attrHTML = '';
+  d.attr.forEach(function(a){
+    attrHTML += '<div class="attraction-item"><h3>&#128205; '+a[0]+'</h3><p>'+a[1]+'</p>'+(a[2]?'<div class="tip">&#128161; '+a[2]+'</div>':'')+'</div>';
+  });
+
+  var foodHTML = '';
+  d.food.forEach(function(f){
+    foodHTML += '<div class="food-card"><div class="food-type">'+f[1]+'</div><h4>'+f[0]+'</h4><div class="food-recommend">&#128077; '+f[2]+'</div><div class="food-price">💰 '+f[3]+'</div></div>';
+  });
+
+  var schedHTML = '';
+  d.schedule.forEach(function(s){
+    schedHTML += '<div class="timeline-item"><div class="time">'+s[0]+'</div><div class="activity">'+s[1]+'</div>'+(s[2]?'<div class="note">'+s[2]+'</div>':'')+'</div>';
+  });
+
+  var transHTML = '';
+  d.trans.forEach(function(t){
+    transHTML += '<div class="transport-item"><span class="mode">'+t[0]+'</span><span>'+t[1]+'</span></div>';
+  });
+
+  var tipsHTML = '';
+  d.tips.forEach(function(t){
+    tipsHTML += '<li>'+t+'</li>';
+  });
+
+  var highlights = '';
+  d.high.forEach(function(h){
+    highlights += '<li style="margin-bottom:6px">'+h+'</li>';
+  });
+
+  var detailDiv = document.createElement('div');
+  detailDiv.className = 'detail-wrap';
+  detailDiv.id = 'd'+d.day;
+  detailDiv.innerHTML = '<div class="detail-header"><div class="detail-header-bg"><img src="'+d.attr[0][3]+'"></div><div class="detail-header-content"><button class="back-btn" onclick="backOverview()">&#8592; 回到行程總覽</button><h1>Day '+d.day+' &#183; '+d.title+'</h1><div class="detail-date">📅 '+d.date+' ('+d.dw+') '+d.emo+'</div></div></div><div class="detail-body"><div class="info-card"><h2>&#127775; 今日重點</h2><ul style="padding-left:20px">'+highlights+'</ul></div><div class="info-card"><h2>&#9200; 行程時間表</h2><div class="timeline">'+schedHTML+'</div></div><div class="info-card"><h2>&#128652; 交通資訊</h2>'+transHTML+'</div><div class="info-card"><h2>&#127963;&#65039; 景點介紹</h2>'+carousel+attrHTML+'</div><div class="info-card"><h2>&#127837; 美食推薦</h2><div class="food-grid">'+foodHTML+'</div></div><div class="info-card"><h2>&#127968; 住宿資訊</h2><div class="hotel-card"><div style="font-size:1.8rem">&#127968;</div><div><h3>'+d.hotel+'</h3></div></div></div><div class="info-card"><h2>&#128161; 注意事項</h2><ul class="tips-list">'+tipsHTML+'</ul></div><div class="info-card"><h2>&#128506; 地圖</h2><div class="map-wrap"><iframe src="'+d.map+'" loading="lazy" allowfullscreen></iframe></div></div></div>';
+  wrap.appendChild(detailDiv);
+});
+
+function showDay(n){
+  document.querySelectorAll('.detail-wrap').forEach(function(e){e.classList.remove('show')});
+  var el = document.getElementById('d'+n);
+  if(el){el.classList.add('show');setTimeout(function(){el.scrollIntoView({behavior:'smooth'})},50)}
+}
+
+function backOverview(){
+  document.querySelectorAll('.detail-wrap').forEach(function(e){e.classList.remove('show')});
+  document.getElementById('overview').scrollIntoView({behavior:'smooth'});
+}
+
+function goHome(){
+  document.querySelectorAll('.detail-wrap').forEach(function(e){e.classList.remove('show')});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goOverview(){
+  document.querySelectorAll('.detail-wrap').forEach(function(e){e.classList.remove('show')});
+  document.getElementById('overview').scrollIntoView({behavior:'smooth'});
+}
+
+function cmove(n,dir){
+  var wrap = document.getElementById('d'+n);
+  var imgs = wrap.querySelectorAll('.cimg');
+  var cur = wrap.querySelector('.cimg.on');
+  var idx = parseInt(cur.getAttribute('data-i'));
+  cur.classList.remove('on');
+  cur.style.display = 'none';
+  var next = (idx + dir + imgs.length) % imgs.length;
+  imgs[next].classList.add('on');
+  imgs[next].style.display = 'block';
+}
+
+// back to top
+window.addEventListener('scroll',function(){
+  var btn = document.getElementById('topBtn');
+  if(window.scrollY>300)btn.classList.add('show');else btn.classList.remove('show');
+});
+</script>
+</body>
+</html>
