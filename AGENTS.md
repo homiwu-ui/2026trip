@@ -12,6 +12,7 @@
 - 📋 GDrive 工作桌：`G:\我的雲端硬碟\2026trip`
 - 🐙 GitHub repo：`homiwu-ui/2026trip`
 - 📘 Obsidian 駕駛艙：`G:\我的雲端硬碟\2nddrain\2026trip\工作筆記.md`
+📁 Obsidian vault root：`G:\我的雲端硬碟\2nddrain\`
 
 ## 注意事項
 - commit 訊息寫清楚做了什麼 + 為什麼
