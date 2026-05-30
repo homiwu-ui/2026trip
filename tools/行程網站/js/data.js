@@ -41,7 +41,7 @@ const itinerary = [
         name: "西班牙階梯 (Spanish Steps)",
         description: "羅馬最經典的電影場景之一。早晨 10 點前人潮最少，是最佳拍照時機。走上階梯中段回頭往下拍，可以拍到名牌大街的繁華視角。注意階梯上禁止飲食與坐下。",
         tip: "旁邊有羅馬第一家麥當勞，裝潢華麗，Tiramisu 意外地好吃！",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1761733133824-ab5b1d81e493?w=800"
       },
       {
         name: "特雷維許願池 (Trevi Fountain)",
@@ -76,6 +76,7 @@ const itinerary = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?q=Spanish+Steps+Rome+Italy"
   },
+  {
     day: 2,
     date: "2026-07-23",
     dayOfWeek: "週四",
@@ -119,7 +120,7 @@ const itinerary = [
         name: "萬神殿 (Pantheon)",
         description: "保存最完整的古羅馬建築，其混凝土穹頂至今仍是世界最大的無鋼筋穹頂。內部光線從頂部圓洞灑落，極具神聖感。",
         tip: "免費入場，建議下午前往光線最美",
-        image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
+        image: "https://images.unsplash.com/photo-1765572444403-53060b80678e?w=800"
       }
     ],
     food: [
@@ -134,6 +135,7 @@ const itinerary = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?q=Colosseum+Rome+Italy"
   },
+  {
     day: 3,
     date: "2026-07-24",
     dayOfWeek: "週五",
@@ -191,6 +193,7 @@ const itinerary = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?q=St+Peter+Basilica+Vatican"
   },
+  {
     day: 4,
     date: "2026-07-25",
     dayOfWeek: "週六",
@@ -230,13 +233,13 @@ const itinerary = [
         name: "聖母百花大教堂 (Duomo)",
         description: "佛羅倫斯的地標，擁有世界最大的磚造穹頂。外牆由白、綠、粉紅三色大理石拼成，極致華麗。",
         tip: "外觀免費參觀，登頂需購票",
-        image: "https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=800"
+        image: "https://images.unsplash.com/photo-1748191024085-391d76b8d5ed?w=800"
       },
       {
         name: "老橋 (Ponte Vecchio)",
         description: "佛羅倫斯最古老的橋樑，橋上聚集了珠寶店與藝廊。夕陽時分景色絕美。",
         tip: "傍晚來最浪漫，可在橋上欣賞亞諾河日落",
-        image: "https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=800"
+        image: "https://images.unsplash.com/photo-1767037447367-99ffa711277c?w=800"
       }
     ],
     food: [
@@ -255,6 +258,7 @@ const itinerary = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?q=Duomo+Florence+Italy"
   },
+  {
     day: 5,
     date: "2026-07-26",
     dayOfWeek: "週日",
@@ -289,13 +293,19 @@ const itinerary = [
         name: "烏菲茲美術館 (Uffizi Gallery)",
         description: "世界最重要的美術館之一，收藏大量文藝復興時期大師作品，包括波提切利的《維納斯的誕生》與《春》。",
         tip: "務必提前預約門票，建議早上時段",
-        image: "https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=800"
+        image: "https://images.unsplash.com/photo-1748191024085-391d76b8d5ed?w=800"
       },
       {
-        name: "百花大教堂圓頂 (Brunelleschi's Dome)",
+        name: "百花大教堂圓頂",
         description: "布魯內萊斯基設計的傳奇圓頂，攀登 463 階樓梯可到達頂端，俯瞰佛羅倫斯全景。",
         tip: "階梯狹窄且陡峭，有懼高症者請考慮",
-        image: "https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=800"
+        image: "https://images.unsplash.com/photo-1767037447367-99ffa711277c?w=800"
+      },
+      {
+        name: "學院美術館 (Galleria dell'Accademia)",
+        description: "收藏米開朗基羅曠世巨作《大衛像》的美術館。大衛像原為放置於百花大教堂的作品，後移至美術館保存。",
+        tip: "門票須提前預約，建議早上時段避開人潮",
+        image: "https://images.unsplash.com/photo-1767037447367-99ffa711277c?w=800"
       }
     ],
     food: [
@@ -348,13 +358,13 @@ const itinerary = [
         name: "比薩斜塔 (Leaning Tower of Pisa)",
         description: "世界聞名的建築奇蹟，因地基不均勻而傾斜。位於奇蹟廣場，可登塔參觀。",
         tip: "建議早上去，人潮較少。經典拍照姿勢是「推塔」！",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1761427429938-9ab02c03db0f?w=800"
       },
       {
         name: "米開朗基羅廣場 (Piazzale Michelangelo)",
         description: "俯瞰佛羅倫斯全景的最佳地點，夕陽時分景色無敵。可以清楚看到百花大教堂穹頂與老橋。",
         tip: "傍晚前往，帶瓶酒坐在階梯上等日落",
-        image: "https://images.unsplash.com/photo-1543429257-3eb0b65d6c48?w=800"
+        image: "https://images.unsplash.com/photo-1767037447367-99ffa711277c?w=800"
       }
     ],
     food: [
@@ -408,13 +418,13 @@ const itinerary = [
         name: "聖馬可廣場 (Piazza San Marco)",
         description: "拿破崙譽為「歐洲最美客廳」。廣場上有聖馬可大教堂、鐘樓與總督府。",
         tip: "早上與傍晚人潮較少，鴿子非常多",
-        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
+        image: "https://images.unsplash.com/photo-1761589339308-542aee20bbbb?w=800"
       },
       {
         name: "嘆息橋 (Bridge of Sighs)",
         description: "連接總督府與監獄的封閉橋樑。傳說囚犯通過時望著窗外最後一眼威尼斯而嘆息。",
         tip: "傍晚夕陽時分拍照最佳",
-        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
+        image: "https://images.unsplash.com/photo-1750701257656-221c3ff98d8c?w=800"
       }
     ],
     food: [
@@ -470,13 +480,13 @@ const itinerary = [
         name: "彩色島 (Burano)",
         description: "以色彩繽紛的漁夫房屋聞名的小島。當地政府規定居民每年需重新粉刷房屋，形成獨特的彩虹景觀。",
         tip: "建議早上前往，光線最佳且遊客較少",
-        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
+        image: "https://images.unsplash.com/photo-1771451166130-0333714e5018?w=800"
       },
       {
         name: "貢多拉船遊 (Gondola Ride)",
         description: "威尼斯最具代表性的交通工具，沿著大運河與小巷水道航行，感受水都的獨特魅力。",
         tip: "建議傍晚搭乘，光線柔和且較不炎熱",
-        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
+        image: "https://images.unsplash.com/photo-1574962696438-d3b30b145233?w=800"
       }
     ],
     food: [
@@ -516,7 +526,7 @@ const itinerary = [
       { time: "11:00 - 11:30", activity: "住宿點寄放行李", note: "" },
       { time: "11:30 - 13:00", activity: "艾曼紐二世拱廊", note: "欣賞華麗建築與逛街" },
       { time: "13:00 - 14:30", activity: "午餐", note: "" },
-      { time: "14:30 - 16:00", action: "星巴克臻選烘焙工坊", note: "全球第三家 Reserve Roastery" },
+      { time: "14:30 - 16:00", activity: "星巴克臻選烘焙工坊", note: "全球第三家 Reserve Roastery" },
       { time: "16:00 - 18:00", activity: "Check-in & 休息", note: "保留體力" },
       { time: "18:00 - 20:00", activity: "晚間散步 & 晚餐", note: "米蘭夜生活初體驗" }
     ],
@@ -530,13 +540,13 @@ const itinerary = [
         name: "艾曼紐二世拱廊 (Galleria Vittorio Emanuele II)",
         description: "義大利最古老的購物拱廊，擁有精美的玻璃穹頂與馬賽克地板。LV、Prada 等精品旗艦店進駐。",
         tip: "傳說踩著公牛的睪丸旋轉會帶來好運",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1762857113920-06ab06b2ce6a?w=800"
       },
       {
         name: "星巴克臻選烘焙工坊 (Starbucks Reserve Roastery)",
         description: "全球僅有六家的旗艦級星巴克，位於前郵政總局大樓，結合咖啡、烘焙與調酒的沉浸式體驗。",
         tip: "推薦試試限定版的咖啡調酒",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1538472241850-7085af704f13?w=800"
       }
     ],
     food: [
@@ -592,7 +602,7 @@ const itinerary = [
         name: "米蘭大教堂 (Duomo di Milano)",
         description: "世界最大的哥德式教堂之一，歷時近 600 年完工。擁有 135 座尖塔與超過 3,000 座雕像。屋頂平台可近距離欣賞飛扶壁與尖塔。",
         tip: "建議購買電梯登頂票，節省體力",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1542277235-f9877df42ad7?w=800"
       }
     ],
     food: [
@@ -642,7 +652,7 @@ const itinerary = [
         name: "斯福爾扎城堡 (Castello Sforzesco)",
         description: "米蘭最大的城堡，曾是統治米蘭的斯福爾扎家族宅邸。內有多個博物館，收藏米開朗基羅最後的雕塑《聖母憐子》。",
         tip: "城堡後方的森皮奧內公園很適合散步休息",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1575399877732-9363881b907e?w=800"
       }
     ],
     food: [
@@ -693,7 +703,7 @@ const itinerary = [
         name: "米蘭 Malpensa 機場",
         description: "米蘭主要國際機場。退稅櫃檯在 check-in 大廳，建議提前 3 小時抵達。退稅分為托運退稅（行李內退稅商品）與手提退稅。",
         tip: "退稅單據需在 check-in 前先給海關蓋章",
-        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800"
+        image: "https://images.unsplash.com/photo-1516296270211-f3ae5494e65d?w=800"
       }
     ],
     food: [

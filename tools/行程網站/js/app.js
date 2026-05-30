@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCards();
     setupBackToTop();
     setupHeroScroll();
+    setupParallax();
+    setupNavScroll();
+    setupScrollReveal();
+    setupRipple();
+    setupImageLoading();
   }
 
   function createNav() {
@@ -21,7 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.id = 'nav';
     nav.innerHTML = `
       <div class="nav-logo">✈️ Italy 2026</div>
-      <button class="menu-toggle" id="menuToggle" aria-label="選單">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="選單">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a data-nav="home" class="active">首頁</a></li>
         <li><a data-nav="overview">行程總覽</a></li>
@@ -32,13 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </ul>
     `;
 
-    nav.querySelector('#menuToggle').addEventListener('click', () => {
+    const menuBtn = nav.querySelector('#menuToggle');
+    menuBtn.addEventListener('click', () => {
       nav.querySelector('#navLinks').classList.toggle('open');
+      menuBtn.classList.toggle('open');
     });
 
     nav.querySelectorAll('[data-nav]').forEach(link => {
       link.addEventListener('click', (e) => {
         nav.querySelector('#navLinks').classList.remove('open');
+        menuBtn.classList.remove('open');
         nav.querySelectorAll('[data-nav]').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
         const target = link.dataset.nav;
@@ -65,16 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.className = 'hero';
     hero.id = 'hero';
     hero.innerHTML = `
-      <div class="hero-bg">
+      <div class="hero-bg" id="heroBg">
         <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1600" alt="Italy" loading="lazy">
       </div>
       <div class="hero-content">
-        <h1>🇮🇹 義大利 12 天</h1>
+        <div class="hero-flag">
+          <span></span><span></span><span></span>
+        </div>
+        <h1>義大利 12 天</h1>
         <p class="subtitle">親子仲夏之旅 · 南進北出全攻略</p>
         <p class="date-range">2026.07.22 — 2026.08.02</p>
-        <div class="hero-scroll" id="heroScroll" style="cursor:pointer">
+        <div class="hero-divider"></div>
+        <button class="hero-cta btn-ripple" id="heroCta">探索行程 ↓</button>
+        <div class="hero-scroll" id="heroScroll">
+          <span class="scroll-arrow">↓</span>
           <span>向下探索</span>
-          <span>↓</span>
         </div>
       </div>
     `;
@@ -82,10 +99,108 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setupHeroScroll() {
-    const el = document.getElementById('heroScroll');
-    if (el) {
-      el.addEventListener('click', () => scrollToSection('overview'));
+    const scrollEl = document.getElementById('heroScroll');
+    const ctaEl = document.getElementById('heroCta');
+    const goToOverview = () => scrollToSection('overview');
+    if (scrollEl) scrollEl.addEventListener('click', goToOverview);
+    if (ctaEl) ctaEl.addEventListener('click', goToOverview);
+  }
+
+  function setupParallax() {
+    const heroBg = document.getElementById('heroBg');
+    if (!heroBg) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          const maxScroll = window.innerHeight;
+          const amount = Math.min(scrolled / maxScroll, 1);
+          heroBg.style.transform = `translateY(${scrolled * 0.15}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+
+  function setupNavScroll() {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    const hero = document.getElementById('hero');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        nav.classList.toggle('scrolled', !entry.isIntersecting);
+      },
+      { rootMargin: '-1px 0px 0px 0px' }
+    );
+    observer.observe(hero);
+  }
+
+  function setupScrollReveal() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }, 100);
+  }
+
+  function setupRipple() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-ripple');
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  }
+
+  function setupImageLoading() {
+    function handleImage(img) {
+      if (img.complete && img.naturalWidth) {
+        img.classList.add('loaded');
+        if (img.closest('.card-thumb')) img.closest('.card-thumb').classList.add('loaded');
+        if (img.closest('.hero-bg')) img.closest('.hero-bg').classList.add('loaded');
+        if (img.closest('.detail-header-bg')) img.closest('.detail-header-bg').classList.add('loaded');
+        if (img.closest('.attraction-carousel')) img.closest('.attraction-carousel').classList.add('loaded');
+      } else {
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+          if (img.closest('.card-thumb')) img.closest('.card-thumb').classList.add('loaded');
+          if (img.closest('.hero-bg')) img.closest('.hero-bg').classList.add('loaded');
+          if (img.closest('.detail-header-bg')) img.closest('.detail-header-bg').classList.add('loaded');
+          if (img.closest('.attraction-carousel')) img.closest('.attraction-carousel').classList.add('loaded');
+        });
+      }
     }
+    setTimeout(() => {
+      document.querySelectorAll('img').forEach(handleImage);
+      const observer = new MutationObserver(mutations => {
+        mutations.forEach(m => {
+          m.addedNodes.forEach(node => {
+            if (node.nodeType === 1) {
+              node.querySelectorAll('img').forEach(handleImage);
+            }
+          });
+        });
+      });
+      observer.observe(document.getElementById('app'), { childList: true, subtree: true });
+    }, 50);
   }
 
   function createOverview() {
@@ -99,17 +214,42 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     const grid = section.querySelector('#dayGrid');
+
+    const cardImages = {
+      1: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800',
+      2: 'https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800',
+      3: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800',
+      4: 'https://images.unsplash.com/photo-1748191024085-391d76b8d5ed?w=800',
+      5: 'https://images.unsplash.com/photo-1767037447367-99ffa711277c?w=800',
+      6: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800',
+      7: 'https://images.unsplash.com/photo-1761589339308-542aee20bbbb?w=800',
+      8: 'https://images.unsplash.com/photo-1574962696438-d3b30b145233?w=800',
+      9: 'https://images.unsplash.com/photo-1542277235-f9877df42ad7?w=800',
+      10: 'https://images.unsplash.com/photo-1538472241850-7085af704f13?w=800',
+      11: 'https://images.unsplash.com/photo-1575399877732-9363881b907e?w=800',
+      12: 'https://images.unsplash.com/photo-1516296270211-f3ae5494e65d?w=800',
+    };
+
     itinerary.forEach((day, index) => {
       const card = document.createElement('div');
       card.className = 'day-card fade-in';
+      card.style.setProperty('--reveal-index', index);
       card.dataset.day = day.day;
+      const thumbImg = cardImages[day.day] || day.attractions[0]?.image || '';
       card.innerHTML = `
-        <div class="day-emoji">${day.emoji}</div>
-        <div class="day-number">Day ${day.day} · ${day.date}</div>
-        <h3>${day.title} ${day.subtitle}</h3>
-        <div class="day-region">📍 ${day.region}</div>
-        <div class="day-desc">${day.summary[0]}</div>
-        <div class="day-date">📅 ${day.dayOfWeek} · ${day.date}</div>
+        <div class="card-thumb">
+          <img src="${thumbImg}" alt="${day.title}" loading="lazy">
+          <div class="card-thumb-overlay">
+            <span class="card-day-label">Day ${day.day}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="day-number">${day.date} · ${day.dayOfWeek}</div>
+          <h3>${day.title}</h3>
+          <div class="day-subtitle">${day.subtitle}</div>
+          <div class="day-region">📍 ${day.region}</div>
+          <div class="day-desc">${day.summary[0]}</div>
+        </div>
       `;
       card.addEventListener('click', () => showDay(day.day));
       grid.appendChild(card);
@@ -179,8 +319,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="info-card fade-in">
         <h2>⏰ 行程時間表</h2>
         <div class="timeline">
-          ${day.schedule.map(s => `
-            <div class="timeline-item">
+          ${day.schedule.map((s, i) => `
+            <div class="timeline-item fade-in" style="--reveal-index:${i}">
               <div class="time">${s.time}</div>
               <div class="activity">${s.activity}</div>
               ${s.note ? `<div class="note">${s.note}</div>` : ''}
@@ -224,6 +364,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="carousel-btn next" data-day="${day.day}">›</button>
           ` : ''}
         </div>
+        ${day.attractions.length > 1 ? `
+          <div class="carousel-dots" id="dots-${day.day}">
+            ${day.attractions.map((_, i) => `
+              <button class="carousel-dot ${i === 0 ? 'active' : ''}" 
+                      data-index="${i}" data-day="${day.day}"></button>
+            `).join('')}
+          </div>
+        ` : ''}
         ${day.attractions.map(a => `
           <div class="attraction-item">
             <h3>📍 ${a.name}</h3>
@@ -332,20 +480,37 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupCards() {
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.carousel-btn');
-      if (!btn) return;
-      const day = btn.dataset.day;
+      const dot = e.target.closest('.carousel-dot');
+      let day, targetIdx;
+
+      if (btn) {
+        day = btn.dataset.day;
+        const carousel = document.getElementById(`carousel-${day}`);
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const current = carousel.querySelector('.carousel-slide.active');
+        const currentIdx = parseInt(current.dataset.index);
+        if (btn.classList.contains('next')) {
+          targetIdx = (currentIdx + 1) % slides.length;
+        } else {
+          targetIdx = (currentIdx - 1 + slides.length) % slides.length;
+        }
+      } else if (dot) {
+        day = dot.dataset.day;
+        targetIdx = parseInt(dot.dataset.index);
+      } else {
+        return;
+      }
+
       const carousel = document.getElementById(`carousel-${day}`);
       const slides = carousel.querySelectorAll('.carousel-slide');
-      const current = carousel.querySelector('.carousel-slide.active');
-      const currentIdx = parseInt(current.dataset.index);
       slides.forEach(s => s.classList.remove('active'));
-      let nextIdx;
-      if (btn.classList.contains('next')) {
-        nextIdx = (currentIdx + 1) % slides.length;
-      } else {
-        nextIdx = (currentIdx - 1 + slides.length) % slides.length;
+      slides[targetIdx].classList.add('active');
+
+      const dots = document.getElementById(`dots-${day}`);
+      if (dots) {
+        dots.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+        dots.querySelector(`.carousel-dot[data-index="${targetIdx}"]`).classList.add('active');
       }
-      slides[nextIdx].classList.add('active');
     });
   }
 
@@ -398,9 +563,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (slides.length < 2) return;
         const current = carousel.querySelector('.carousel-slide.active');
         const currentIdx = parseInt(current.dataset.index);
-        slides.forEach(s => s.classList.remove('active'));
         const nextIdx = (currentIdx + 1) % slides.length;
+        slides.forEach(s => s.classList.remove('active'));
         slides[nextIdx].classList.add('active');
+        const day = carousel.id.replace('carousel-', '');
+        const dots = document.getElementById(`dots-${day}`);
+        if (dots) {
+          dots.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+          dots.querySelector(`.carousel-dot[data-index="${nextIdx}"]`).classList.add('active');
+        }
       });
     }, 5000);
   }
