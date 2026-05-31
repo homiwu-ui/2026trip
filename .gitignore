@@ -8,6 +8,7 @@ desktop.ini
 *.key
 credentials.*
 .opencode/
+opencode.json
 
 # Node.js
 node_modules/
