@@ -35,9 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a data-nav="home" class="active">首頁</a></li>
         <li><a data-nav="overview">行程總覽</a></li>
         <li><a data-nav="favorites">我的收藏</a></li>
-        <li><button class="theme-toggle" id="themeToggle" aria-label="切換主題">
-          ${document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'}
-        </button></li>
+        <li class="theme-buttons">
+          <button class="theme-btn ${getActiveTheme() === 'office' ? 'active' : ''}" data-theme="office" title="Office">💼</button>
+          <button class="theme-btn ${getActiveTheme() === 'space' ? 'active' : ''}" data-theme="space" title="Space">🚀</button>
+          <button class="theme-btn ${getActiveTheme() === 'castle' ? 'active' : ''}" data-theme="castle" title="Castle">🏰</button>
+          <button class="theme-btn ${getActiveTheme() === 'cyberpunk' ? 'active' : ''}" data-theme="cyberpunk" title="Cyberpunk">🦾</button>
+        </li>
       </ul>
     `;
 
@@ -66,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    const themeToggle = nav.querySelector('#themeToggle');
-    themeToggle.addEventListener('click', toggleTheme);
+    nav.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+    });
 
     return nav;
   }
@@ -448,12 +452,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return btn;
   }
 
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    document.getElementById('themeToggle').textContent = isDark ? '🌙' : '☀️';
+  function getActiveTheme() {
+    return localStorage.getItem('theme') || 'office';
+  }
+
+  function setTheme(name) {
+    document.documentElement.setAttribute('data-theme', name);
+    localStorage.setItem('theme', name);
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === name);
+    });
   }
 
   function scrollToSection(id) {
@@ -544,10 +552,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function initTheme() {
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
+    const saved = localStorage.getItem('theme') || 'office';
+    document.documentElement.setAttribute('data-theme', saved);
   }
 
   initTheme();
