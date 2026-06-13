@@ -473,12 +473,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .day-card {
-  background: var(--bg-card);
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(var(--border), var(--border)) border-box;
+  background-color: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: all var(--transition);
-  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -496,26 +499,9 @@ h1, h2, h3, h4, h5, h6 {
 .day-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
-  border-color: transparent;
-}
-
-.day-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  padding: 1px;
-  background: linear-gradient(135deg, var(--flag-green), var(--med-blue), var(--flag-red));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity var(--transition);
-  pointer-events: none;
-}
-
-.day-card:hover::before {
-  opacity: 1;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(135deg, var(--flag-green), var(--med-blue), var(--flag-red)) border-box;
 }
 
 .day-card:active {
