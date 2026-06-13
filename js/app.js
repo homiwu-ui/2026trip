@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     itinerary.forEach((day, index) => {
       const card = document.createElement('div');
-      card.className = 'day-card fade-in';
+      card.className = `day-card fade-in day-card--${day.day}`;
       card.style.setProperty('--reveal-index', index);
       card.dataset.day = day.day;
       const thumbImg = cardImages[day.day] || day.attractions[0]?.image || '';

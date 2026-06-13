@@ -41,6 +41,62 @@
   --shadow-lg: 0 12px 50px rgba(0,0,0,0.6);
 }
 
+/* Dark mode day card gradients */
+[data-theme="dark"] .day-card--1, [data-theme="dark"] .day-card--2 {
+  background: linear-gradient(135deg, rgba(139,69,19,0.15) 0%, rgba(233,196,106,0.15) 50%, rgba(30,30,46,0.95) 100%);
+  border-color: rgba(139,69,19,0.25);
+}
+
+[data-theme="dark"] .day-card--3, [data-theme="dark"] .day-card--4 {
+  background: linear-gradient(135deg, rgba(26,96,152,0.15) 0%, rgba(0,146,70,0.15) 50%, rgba(30,30,46,0.95) 100%);
+  border-color: rgba(26,96,152,0.25);
+}
+
+[data-theme="dark"] .day-card--5, [data-theme="dark"] .day-card--6 {
+  background: linear-gradient(135deg, rgba(212,163,115,0.15) 0%, rgba(206,43,55,0.15) 50%, rgba(30,30,46,0.95) 100%);
+  border-color: rgba(212,163,115,0.25);
+}
+
+[data-theme="dark"] .day-card--7, [data-theme="dark"] .day-card--8 {
+  background: linear-gradient(135deg, rgba(0,146,70,0.15) 0%, rgba(233,196,106,0.15) 50%, rgba(30,30,46,0.95) 100%);
+  border-color: rgba(0,146,70,0.25);
+}
+
+[data-theme="dark"] .day-card--9, [data-theme="dark"] .day-card--10, [data-theme="dark"] .day-card--11 {
+  background: linear-gradient(135deg, rgba(206,43,55,0.15) 0%, rgba(26,96,152,0.15) 50%, rgba(30,30,46,0.95) 100%);
+  border-color: rgba(206,43,55,0.25);
+}
+
+[data-theme="dark"] .day-card--1:hover, [data-theme="dark"] .day-card--2:hover {
+  background: linear-gradient(135deg, rgba(139,69,19,0.2) 0%, rgba(233,196,106,0.2) 50%, rgba(30,30,46,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+[data-theme="dark"] .day-card--3:hover, [data-theme="dark"] .day-card--4:hover {
+  background: linear-gradient(135deg, rgba(26,96,152,0.2) 0%, rgba(0,146,70,0.2) 50%, rgba(30,30,46,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+[data-theme="dark"] .day-card--5:hover, [data-theme="dark"] .day-card--6:hover {
+  background: linear-gradient(135deg, rgba(212,163,115,0.2) 0%, rgba(206,43,55,0.2) 50%, rgba(30,30,46,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+[data-theme="dark"] .day-card--7:hover, [data-theme="dark"] .day-card--8:hover {
+  background: linear-gradient(135deg, rgba(0,146,70,0.2) 0%, rgba(233,196,106,0.2) 50%, rgba(30,30,46,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+[data-theme="dark"] .day-card--9:hover, [data-theme="dark"] .day-card--10:hover, [data-theme="dark"] .day-card--11:hover {
+  background: linear-gradient(135deg, rgba(206,43,55,0.2) 0%, rgba(26,96,152,0.2) 50%, rgba(30,30,46,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -473,15 +529,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .day-card {
-  background:
-    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-    linear-gradient(var(--border), var(--border)) border-box;
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition);
-  border: 1px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -491,17 +544,78 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
 }
 
-@keyframes cardFadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Unique gradient backgrounds per day */
+.day-card--1, .day-card--2 {
+  background: linear-gradient(135deg, rgba(139,69,19,0.08) 0%, rgba(233,196,106,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(139,69,19,0.15);
+}
+
+.day-card--3, .day-card--4 {
+  background: linear-gradient(135deg, rgba(26,96,152,0.08) 0%, rgba(0,146,70,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(26,96,152,0.15);
+}
+
+.day-card--5, .day-card--6 {
+  background: linear-gradient(135deg, rgba(212,163,115,0.08) 0%, rgba(206,43,55,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(212,163,115,0.15);
+}
+
+.day-card--7, .day-card--8 {
+  background: linear-gradient(135deg, rgba(0,146,70,0.08) 0%, rgba(233,196,106,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(0,146,70,0.15);
+}
+
+.day-card--9, .day-card--10, .day-card--11 {
+  background: linear-gradient(135deg, rgba(206,43,55,0.08) 0%, rgba(26,96,152,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(206,43,55,0.15);
+}
+
+/* Subtle gradient animation on hover */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .day-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
-  background:
-    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-    linear-gradient(135deg, var(--flag-green), var(--med-blue), var(--flag-red)) border-box;
+  border-color: transparent;
+}
+
+.day-card--1:hover, .day-card--2:hover {
+  background: linear-gradient(135deg, rgba(139,69,19,0.12) 0%, rgba(233,196,106,0.12) 50%, rgba(255,255,255,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.day-card--3:hover, .day-card--4:hover {
+  background: linear-gradient(135deg, rgba(26,96,152,0.12) 0%, rgba(0,146,70,0.12) 50%, rgba(255,255,255,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.day-card--5:hover, .day-card--6:hover {
+  background: linear-gradient(135deg, rgba(212,163,115,0.12) 0%, rgba(206,43,55,0.12) 50%, rgba(255,255,255,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.day-card--7:hover, .day-card--8:hover {
+  background: linear-gradient(135deg, rgba(0,146,70,0.12) 0%, rgba(233,196,106,0.12) 50%, rgba(255,255,255,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.day-card--9:hover, .day-card--10:hover, .day-card--11:hover {
+  background: linear-gradient(135deg, rgba(206,43,55,0.12) 0%, rgba(26,96,152,0.12) 50%, rgba(255,255,255,1) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .day-card:active {
