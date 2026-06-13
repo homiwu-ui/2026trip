@@ -1,0 +1,136 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - button "Toggle sidebar" [ref=e4] [cursor=pointer]:
+        - img [ref=e5]
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - generic "Connected" [ref=e20]
+        - 'generic "Hooks: not detected" [ref=e21]'
+        - generic [ref=e22]: AgentMove
+    - generic [ref=e24]:
+      - button "Notifications" [ref=e25] [cursor=pointer]: 🔔
+      - button "Command palette" [ref=e26] [cursor=pointer]:
+        - img [ref=e27]
+  - generic [ref=e29]:
+    - navigation [ref=e30]:
+      - button [ref=e32] [cursor=pointer]:
+        - img [ref=e33]
+      - generic [ref=e35]:
+        - button [ref=e36] [cursor=pointer]:
+          - img [ref=e37]
+        - button [ref=e39] [cursor=pointer]:
+          - img [ref=e40]
+        - button [ref=e42] [cursor=pointer]:
+          - img [ref=e43]
+      - generic [ref=e45]:
+        - button [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+        - button [ref=e49] [cursor=pointer]:
+          - img [ref=e50]
+        - button [ref=e52] [cursor=pointer]:
+          - img [ref=e53]
+        - button [ref=e55] [cursor=pointer]:
+          - img [ref=e56]
+        - button [ref=e58] [cursor=pointer]:
+          - img [ref=e59]
+      - button [ref=e62] [cursor=pointer]:
+        - img [ref=e63]
+    - generic [ref=e65]:
+      - button "Toggle sound" [ref=e67] [cursor=pointer]: 🔈
+      - img [ref=e70]
+      - button "Keyboard shortcuts" [ref=e73] [cursor=pointer]:
+        - img [ref=e74]
+  - generic [ref=e76]:
+    - img [ref=e78]
+    - text: "Following:"
+    - generic [ref=e81]: F to cycle · Esc to exit
+    - button "Stop Following" [ref=e82] [cursor=pointer]
+  - generic [ref=e83]:
+    - generic [ref=e84]:
+      - generic [ref=e87]:
+        - button "Zoom in" [ref=e88] [cursor=pointer]:
+          - img [ref=e89]
+        - button "Zoom out" [ref=e91] [cursor=pointer]:
+          - img [ref=e92]
+        - button "Fit to view" [ref=e94] [cursor=pointer]:
+          - img [ref=e95]
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - button "▶" [ref=e100] [cursor=pointer]
+          - button "LIVE" [ref=e101] [cursor=pointer]
+          - generic [ref=e102]: LIVE
+          - generic "Click to change speed" [ref=e103] [cursor=pointer]: 1x
+        - button "▲" [ref=e104] [cursor=pointer]
+    - generic [ref=e107]:
+      - generic [ref=e109]: Agents
+      - generic [ref=e110]:
+        - generic [ref=e111]:
+          - button "All" [ref=e112] [cursor=pointer]
+          - button "Active" [ref=e113] [cursor=pointer]
+          - button "Idle" [ref=e114] [cursor=pointer]
+          - button "Done" [ref=e115] [cursor=pointer]
+          - combobox "Filter by zone" [ref=e116] [cursor=pointer]:
+            - option "Zone..." [selected]
+            - option "📚 Search"
+            - option "💻 Terminal"
+            - option "🌐 Web"
+            - option "📁 Files"
+            - option "💭 Thinking"
+            - option "💬 Messaging"
+            - option "🌀 Spawn"
+            - option "☕ Idle"
+            - option "📋 Tasks"
+        - generic [ref=e118]:
+          - img [ref=e120]
+          - generic [ref=e129]: Waiting for agents
+          - generic [ref=e130]: Start a Claude Code session and agents will appear here automatically
+      - generic:
+        - generic:
+          - generic:
+            - button "Back":
+              - img
+              - text: Back
+            - button "Edit"
+            - button "Kill"
+        - generic: Activity Feed
+      - generic:
+        - generic:
+          - button "Back":
+            - img
+            - text: Back
+  - generic:
+    - button "Focus camera":
+      - img
+    - button "View details":
+      - img
+    - button "Copy session ID":
+      - img
+  - generic [ref=e132]:
+    - generic [ref=e133]:
+      - generic [ref=e134]: AgentMove
+      - button "×" [ref=e135] [cursor=pointer]
+    - generic [ref=e136]:
+      - paragraph [ref=e137]: Real-time visualization of your Claude Code sessions.
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]: 💻
+          - generic [ref=e141]:
+            - strong [ref=e142]: Start a Claude Code session
+            - text: Agents appear automatically as they work
+        - generic [ref=e143]:
+          - generic [ref=e144]: ⌨
+          - generic [ref=e145]:
+            - strong [ref=e146]: Press ? for shortcuts
+            - text: Quick keys for all features
+        - generic [ref=e147]:
+          - generic [ref=e148]: 🔍
+          - generic [ref=e149]:
+            - strong [ref=e150]: Press Ctrl+K
+            - text: Command palette to search anything
+        - generic [ref=e151]:
+          - generic [ref=e152]: 📊
+          - generic [ref=e153]:
+            - strong [ref=e154]: Press A for analytics
+            - text: Live cost tracking and token stats
+    - button "Got it, let's go!" [ref=e155] [cursor=pointer]

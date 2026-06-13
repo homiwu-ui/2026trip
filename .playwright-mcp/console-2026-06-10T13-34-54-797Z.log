@@ -1,0 +1,10 @@
+[    2743ms] [LOG] AgentMove started @ http://127.0.0.1:3333/assets/index-DG7HqEmM.js:1337
+[   56733ms] TypeError: Cannot read properties of null (reading 'clear')
+    at Ht._callContextMethod (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:239:55361)
+    at Ht.clear (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:239:57600)
+    at Vy.update (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:250:104972)
+    at t1.update (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:250:117136)
+    at Vr._fn (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:1338:10353)
+    at Vr.emit (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:5:67200)
+    at Le.update (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:5:69623)
+    at Le._tick (http://127.0.0.1:3333/assets/index-DG7HqEmM.js:5:67974)
