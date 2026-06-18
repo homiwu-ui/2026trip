@@ -358,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
           churchFilter = btn.dataset.city;
           const grid = document.getElementById('churchGrid');
           renderChurches(grid, churchFilter);
+          scrollToSection('churches');
         });
       });
     }
@@ -497,6 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
           restaurantFilter = btn.dataset.city;
           const grid = document.getElementById('restaurantGrid');
           renderRestaurants(grid, restaurantFilter);
+          scrollToSection('restaurants');
         });
       });
     }
