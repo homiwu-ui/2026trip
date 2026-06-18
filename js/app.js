@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    const filterContainer = document.getElementById('churchFilters');
+    const filterContainer = grid.closest('.section')?.querySelector('#churchFilters');
     if (filterContainer) {
       filterContainer.querySelectorAll('.church-filter').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setupRestaurantEvents(grid) {
-    const filterContainer = document.getElementById('restaurantFilters');
+    const filterContainer = grid.closest('.section')?.querySelector('#restaurantFilters');
     if (filterContainer) {
       filterContainer.querySelectorAll('.restaurant-filter').forEach(btn => {
         btn.addEventListener('click', () => {
