@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(createHero());
     app.appendChild(createOverview());
     app.appendChild(createChurchesSection());
+    app.appendChild(createRestaurantsSection());
     app.appendChild(createDayDetails());
     app.appendChild(createBackToTop());
 
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a data-nav="home" class="active">首頁</a></li>
         <li><a data-nav="overview">行程總覽</a></li>
         <li><a data-nav="churches">教堂推薦</a></li>
+        <li><a data-nav="restaurants">餐廳推薦</a></li>
         <li><a data-nav="favorites">我的收藏</a></li>
         <li><button class="theme-toggle" id="themeToggle" aria-label="切換主題">
           ${document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'}
@@ -68,6 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('dayDetails').style.display = 'none';
           document.querySelectorAll('.day-detail').forEach(d => d.classList.remove('active'));
           scrollToSection('churches');
+        } else if (target === 'restaurants') {
+          document.getElementById('dayDetails').style.display = 'none';
+          document.querySelectorAll('.day-detail').forEach(d => d.classList.remove('active'));
+          scrollToSection('restaurants');
         } else if (target === 'favorites') showFavorites();
       });
     });
@@ -407,6 +413,84 @@ document.addEventListener('DOMContentLoaded', () => {
       const gridReload = document.getElementById('churchGrid');
       renderChurches(gridReload, churchFilter);
     });
+  }
+
+  let restaurantFilter = '全部';
+
+  function createRestaurantsSection() {
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'restaurants';
+    section.innerHTML = `
+      <h2 class="section-title">🍝 餐廳推薦</h2>
+      <p class="section-subtitle">61 間精選餐廳·依城市分類，含價格、推薦菜色與網路評分</p>
+      <div class="restaurant-filters" id="restaurantFilters">
+        <button class="restaurant-filter active" data-city="全部">全部 (61)</button>
+        <button class="restaurant-filter" data-city="羅馬">羅馬 (19)</button>
+        <button class="restaurant-filter" data-city="佛羅倫斯">佛羅倫斯 (12)</button>
+        <button class="restaurant-filter" data-city="威尼斯">威尼斯 (8)</button>
+        <button class="restaurant-filter" data-city="米蘭">米蘭 (14)</button>
+      </div>
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+      <div class="restaurant-legend" style="margin-top:2rem;padding:1rem;background:var(--card-bg);border-radius:12px;font-size:0.85rem;color:var(--text-light);">
+        <p>💰 費用說明：€ = €10 以下 | €€ = €10–25 | €€€ = €25–50 | €€€€ = €50 以上（每人）</p>
+        <p>🦐 = Gambero Rosso 紅蝦評鑑餐廳</p>
+      </div>
+    `;
+
+    const grid = section.querySelector('#restaurantGrid');
+    renderRestaurants(grid, '全部');
+
+    return section;
+  }
+
+  function renderRestaurants(grid, city) {
+    const cityMap = { "羅馬": "羅馬", "佛羅倫斯": "佛羅倫斯", "威尼斯": "威尼斯", "米蘭": "米蘭" };
+    const filtered = city === '全部' ? restaurants : restaurants.filter(r => r.city === city);
+    grid.innerHTML = filtered.map((r, i) => `
+      <div class="restaurant-card fade-in visible" data-id="${r.id}" style="--reveal-index:${i}">
+        <div class="restaurant-card-body">
+          <div class="restaurant-meta-top">
+            <span class="restaurant-city">${r.city} · Day ${r.day}</span>
+            <span class="restaurant-price">${r.price}</span>
+          </div>
+          <h3>${r.name}</h3>
+          ${r.nameEn ? `<div class="restaurant-en">${r.nameEn}</div>` : ''}
+          <div class="restaurant-cuisine">${r.cuisine}</div>
+          <div class="restaurant-tags">
+            ${r.tags.map(t => `<span class="restaurant-tag">${t}</span>`).join('')}
+          </div>
+          <p class="restaurant-desc">${r.description}</p>
+          <div class="restaurant-meta">
+            <div class="restaurant-meta-item">
+              <span class="meta-label">👍</span>
+              <span>${r.mustEat}</span>
+            </div>
+            <div class="restaurant-meta-item">
+              <span class="meta-label">📍</span>
+              <span>${r.address}</span>
+            </div>
+            ${r.rating ? `<div class="restaurant-meta-item"><span class="meta-label">⭐</span><span>${r.rating}</span></div>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+    setupRestaurantEvents(grid);
+  }
+
+  function setupRestaurantEvents(grid) {
+    const filterContainer = document.getElementById('restaurantFilters');
+    if (filterContainer) {
+      filterContainer.querySelectorAll('.restaurant-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterContainer.querySelectorAll('.restaurant-filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          restaurantFilter = btn.dataset.city;
+          const grid = document.getElementById('restaurantGrid');
+          renderRestaurants(grid, restaurantFilter);
+        });
+      });
+    }
   }
 
   function createDayDetails() {
