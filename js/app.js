@@ -323,6 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="church-meta-item">
               <span class="meta-label">📍</span>
               <span>${ch.address}</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ch.name + ' ' + ch.address)}" target="_blank" rel="noopener" class="map-icon-link" title="在 Google Maps 中開啟">
+                <svg viewBox="0 0 24 24" class="map-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
             </div>
           </div>
           <div class="church-mustsee">
@@ -384,6 +387,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="detail-row">
               <span class="detail-label">地址</span>
               <span>${church.address}</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.name + ' ' + church.address)}" target="_blank" rel="noopener" class="map-icon-link" title="在 Google Maps 中開啟" style="margin-left:8px;">
+                <svg viewBox="0 0 24 24" class="map-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
             </div>
             <div class="detail-row">
               <span class="detail-label">開放時間</span>
@@ -469,6 +475,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="restaurant-meta-item">
               <span class="meta-label">📍</span>
               <span>${r.address}</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ' ' + r.address)}" target="_blank" rel="noopener" class="map-icon-link" title="在 Google Maps 中開啟" style="margin-left:4px;">
+                <svg viewBox="0 0 24 24" class="map-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
             </div>
             ${r.rating ? `<div class="restaurant-meta-item"><span class="meta-label">⭐</span><span>${r.rating}</span></div>` : ''}
           </div>
