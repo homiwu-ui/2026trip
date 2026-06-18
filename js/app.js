@@ -293,6 +293,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = section.querySelector('#churchGrid');
     renderChurches(grid, '全部');
 
+    section.addEventListener('click', (e) => {
+      const btn = e.target.closest('.church-filter');
+      if (!btn) return;
+      section.querySelectorAll('.church-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      churchFilter = btn.dataset.city;
+      const g = document.getElementById('churchGrid');
+      renderChurches(g, churchFilter);
+      scrollToSection('churches');
+    });
+
     return section;
   }
 
@@ -349,19 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    const filterContainer = grid.closest('.section')?.querySelector('#churchFilters');
-    if (filterContainer) {
-      filterContainer.querySelectorAll('.church-filter').forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterContainer.querySelectorAll('.church-filter').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          churchFilter = btn.dataset.city;
-          const grid = document.getElementById('churchGrid');
-          renderChurches(grid, churchFilter);
-          scrollToSection('churches');
-        });
-      });
-    }
   }
 
   function showChurchDetail(church, grid) {
@@ -448,6 +446,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = section.querySelector('#restaurantGrid');
     renderRestaurants(grid, '全部');
 
+    section.addEventListener('click', (e) => {
+      const btn = e.target.closest('.restaurant-filter');
+      if (!btn) return;
+      section.querySelectorAll('.restaurant-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      restaurantFilter = btn.dataset.city;
+      const g = document.getElementById('restaurantGrid');
+      renderRestaurants(g, restaurantFilter);
+      scrollToSection('restaurants');
+    });
+
     return section;
   }
 
@@ -489,19 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setupRestaurantEvents(grid) {
-    const filterContainer = grid.closest('.section')?.querySelector('#restaurantFilters');
-    if (filterContainer) {
-      filterContainer.querySelectorAll('.restaurant-filter').forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterContainer.querySelectorAll('.restaurant-filter').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          restaurantFilter = btn.dataset.city;
-          const grid = document.getElementById('restaurantGrid');
-          renderRestaurants(grid, restaurantFilter);
-          scrollToSection('restaurants');
-        });
-      });
-    }
   }
 
   function createDayDetails() {
