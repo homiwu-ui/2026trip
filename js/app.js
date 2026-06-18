@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(createNav());
     app.appendChild(createHero());
     app.appendChild(createOverview());
+    app.appendChild(createItalyMap());
     app.appendChild(createChurchesSection());
     app.appendChild(createRestaurantsSection());
     app.appendChild(createDayDetails());
     app.appendChild(createBackToTop());
+    app.appendChild(createProgressBar());
 
     setupCards();
     setupBackToTop();
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollReveal();
     setupRipple();
     setupImageLoading();
+    setupLightbox();
+    setupProgressBar();
   }
 
   function createNav() {
@@ -268,6 +272,90 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     return section;
+  }
+
+  function createItalyMap() {
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'route-map';
+    section.innerHTML = `
+      <h2 class="section-title">🗺️ 路線地圖</h2>
+      <p class="section-subtitle">南進北出 · 四城接力的完美節奏</p>
+      <div class="route-map">
+        <div class="route-city" data-city="羅馬">
+          <div class="route-pin">📍</div>
+          <div class="route-name">羅馬</div>
+          <div class="route-days">Day 1–4</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div class="route-city" data-city="佛羅倫斯">
+          <div class="route-pin">📍</div>
+          <div class="route-name">佛羅倫斯</div>
+          <div class="route-days">Day 4–6</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div class="route-city" data-city="威尼斯">
+          <div class="route-pin">📍</div>
+          <div class="route-name">威尼斯</div>
+          <div class="route-days">Day 7–8</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div class="route-city" data-city="米蘭">
+          <div class="route-pin">📍</div>
+          <div class="route-name">米蘭</div>
+          <div class="route-days">Day 9–12</div>
+        </div>
+      </div>
+    `;
+
+    section.addEventListener('click', (e) => {
+      const city = e.target.closest('.route-city');
+      if (!city) return;
+      const cityName = city.dataset.city;
+      const filter = document.querySelector(`.church-filter[data-city="${cityName}"]`);
+      if (filter) { filter.click(); }
+      else { scrollToSection('churches'); }
+    });
+
+    return section;
+  }
+
+  function createProgressBar() {
+    const bar = document.createElement('div');
+    bar.className = 'reading-progress';
+    bar.id = 'readingProgress';
+    return bar;
+  }
+
+  function setupLightbox() {
+    function open(src, alt) {
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = `
+        <button class="lightbox-close">✕</button>
+        <img class="lightbox-img" src="${src}" alt="${alt || ''}" loading="lazy">
+      `;
+      document.body.appendChild(overlay);
+      requestAnimationFrame(() => overlay.classList.add('open'));
+
+      const close = () => {
+        overlay.classList.remove('open');
+        overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+      };
+
+      overlay.querySelector('.lightbox-close').addEventListener('click', (e) => { e.stopPropagation(); close(); });
+      overlay.addEventListener('click', close);
+
+      const escHandler = (e) => { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', escHandler); } };
+      document.addEventListener('keydown', escHandler);
+    }
+
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('.church-card-img img, .card-thumb img, .attraction-carousel .carousel-slide');
+      if (!img) return;
+      if (e.target.closest('.carousel-btn, .carousel-dot')) return;
+      open(img.src, img.alt);
+    });
   }
 
   let churchFilter = '全部';
@@ -770,6 +858,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.scrollY > 300) btn.classList.add('visible');
       else btn.classList.remove('visible');
     });
+  }
+
+  function setupProgressBar() {
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('readingProgress');
+      if (!bar) return;
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = `${(scrollTop / scrollHeight) * 100}%`;
+    }, { passive: true });
   }
 
   function showFavorites() {
