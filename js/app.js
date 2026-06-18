@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(createNav());
     app.appendChild(createHero());
     app.appendChild(createOverview());
+    app.appendChild(createChurchesSection());
     app.appendChild(createDayDetails());
     app.appendChild(createBackToTop());
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <ul class="nav-links" id="navLinks">
         <li><a data-nav="home" class="active">首頁</a></li>
         <li><a data-nav="overview">行程總覽</a></li>
+        <li><a data-nav="churches">教堂推薦</a></li>
         <li><a data-nav="favorites">我的收藏</a></li>
         <li><button class="theme-toggle" id="themeToggle" aria-label="切換主題">
           ${document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'}
@@ -62,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('dayDetails').style.display = 'none';
           document.querySelectorAll('.day-detail').forEach(d => d.classList.remove('active'));
           scrollToSection('overview');
+        } else if (target === 'churches') {
+          document.getElementById('dayDetails').style.display = 'none';
+          document.querySelectorAll('.day-detail').forEach(d => d.classList.remove('active'));
+          scrollToSection('churches');
         } else if (target === 'favorites') showFavorites();
       });
     });
@@ -256,6 +262,151 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     return section;
+  }
+
+  let churchFilter = '全部';
+
+  function createChurchesSection() {
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'churches';
+    section.innerHTML = `
+      <h2 class="section-title">⛪ 教堂推薦</h2>
+      <p class="section-subtitle">17 座必訪教堂．依城市分類，含門票、開放時間與必看重點</p>
+      <div class="church-filters" id="churchFilters">
+        <button class="church-filter active" data-city="全部">全部 (17)</button>
+        <button class="church-filter" data-city="羅馬">羅馬 (4)</button>
+        <button class="church-filter" data-city="佛羅倫斯">佛羅倫斯 (3)</button>
+        <button class="church-filter" data-city="比薩">比薩 (2)</button>
+        <button class="church-filter" data-city="威尼斯">威尼斯 (4)</button>
+        <button class="church-filter" data-city="米蘭">米蘭 (4)</button>
+      </div>
+      <div class="church-grid" id="churchGrid"></div>
+    `;
+
+    const grid = section.querySelector('#churchGrid');
+    renderChurches(grid, '全部');
+
+    return section;
+  }
+
+  function renderChurches(grid, city) {
+    const filtered = city === '全部' ? churches : churches.filter(c => c.city === city);
+    grid.innerHTML = filtered.map((ch, i) => `
+      <div class="church-card fade-in visible" data-id="${ch.id}" style="--reveal-index:${i}">
+        <div class="church-card-img">
+          <img src="${ch.image}" alt="${ch.name}" loading="lazy">
+          <div class="church-card-city">${ch.city} · Day ${ch.day}</div>
+        </div>
+        <div class="church-card-body">
+          <h3>${ch.name}</h3>
+          <div class="church-card-en">${ch.nameEn}</div>
+          <div class="church-tags">
+            ${ch.tags.map(t => `<span class="church-tag">${t}</span>`).join('')}
+          </div>
+          <p class="church-desc">${ch.description}</p>
+          <div class="church-meta">
+            <div class="church-meta-item">
+              <span class="meta-label">💰</span>
+              <span>${ch.ticket}</span>
+            </div>
+            <div class="church-meta-item">
+              <span class="meta-label">🕐</span>
+              <span>${ch.suggestedTime}</span>
+            </div>
+            <div class="church-meta-item">
+              <span class="meta-label">📍</span>
+              <span>${ch.address}</span>
+            </div>
+          </div>
+          <div class="church-mustsee">
+            <strong>✨ 必看：</strong>${ch.mustSee}
+          </div>
+          <button class="church-detail-btn" data-id="${ch.id}" data-city="${ch.city}">查看詳細資訊 →</button>
+        </div>
+      </div>
+    `).join('');
+    setupChurchEvents(grid);
+  }
+
+  function setupChurchEvents(grid) {
+    grid.querySelectorAll('.church-detail-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt(btn.dataset.id);
+        const ch = churches.find(c => c.id === id);
+        if (!ch) return;
+        grid.querySelectorAll('.church-card').forEach(c => c.style.display = 'none');
+        showChurchDetail(ch, grid);
+      });
+    });
+
+    const filterContainer = document.getElementById('churchFilters');
+    if (filterContainer) {
+      filterContainer.querySelectorAll('.church-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterContainer.querySelectorAll('.church-filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          churchFilter = btn.dataset.city;
+          const grid = document.getElementById('churchGrid');
+          renderChurches(grid, churchFilter);
+        });
+      });
+    }
+  }
+
+  function showChurchDetail(church, grid) {
+    const detail = document.createElement('div');
+    detail.className = 'church-detail-view fade-in visible';
+    detail.id = `church-detail-${church.id}`;
+    detail.innerHTML = `
+      <div class="church-detail-header">
+        <img src="${church.image}" alt="${church.name}">
+        <div class="church-detail-header-overlay">
+          <button class="back-btn church-back-btn" id="churchBackBtn">← 回到列表</button>
+          <h1>${church.name}</h1>
+          <div class="church-detail-city">${church.city} · Day ${church.day} · ${church.nameEn}</div>
+        </div>
+      </div>
+      <div class="church-detail-body">
+        <div class="info-card fade-in visible">
+          <h2>📖 介紹</h2>
+          <p style="color:var(--text-light);line-height:1.8;">${church.description}</p>
+        </div>
+        <div class="info-card fade-in visible">
+          <h2>ℹ️ 詳細資訊</h2>
+          <div class="church-detail-table">
+            <div class="detail-row">
+              <span class="detail-label">地址</span>
+              <span>${church.address}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">開放時間</span>
+              <span>${church.hours}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">建議時段</span>
+              <span>${church.suggestedTime}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">門票</span>
+              <span>${church.ticket}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">✨ 必看</span>
+              <span style="font-weight:600;color:var(--accent);">${church.mustSee}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(detail);
+
+    document.getElementById('churchBackBtn').addEventListener('click', () => {
+      grid.innerHTML = '';
+      detail.remove();
+      const gridReload = document.getElementById('churchGrid');
+      renderChurches(gridReload, churchFilter);
+    });
   }
 
   function createDayDetails() {
