@@ -607,13 +607,20 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('')}
           </div>
         ` : ''}
-        ${day.attractions.map(a => `
+        ${day.attractions.map(a => {
+          const mapQuery = encodeURIComponent(`${a.name} ${day.region} Italy`);
+          return `
           <div class="attraction-item">
-            <h3>📍 ${a.name}</h3>
+            <h3 style="display:flex;align-items:center;gap:8px;">
+              <span>📍 ${a.name}</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener" class="map-icon-link" title="在 Google Maps 中開啟">
+                <svg viewBox="0 0 24 24" class="map-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
+            </h3>
             <p>${a.description}</p>
             ${a.tip ? `<div class="tip">💡 ${a.tip}</div>` : ''}
-          </div>
-        `).join('')}
+          </div>`;
+        }).join('')}
       </div>
     `;
   }

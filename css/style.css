@@ -2030,6 +2030,27 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Map Icon Link */
+.map-icon-link {
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity var(--transition), transform var(--transition);
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.map-icon-link:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  color: #34a853;
+}
+
+.map-icon {
+  vertical-align: middle;
+}
+
 /* Print */
 @media print {
   .nav,
