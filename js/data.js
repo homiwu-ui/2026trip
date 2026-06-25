@@ -4,121 +4,43 @@ const itinerary = [
     date: "2026-07-22",
     dayOfWeek: "週三",
     title: "羅馬",
-    subtitle: "初見永恆之城",
+    subtitle: "競技場初體驗",
     region: "羅馬",
-    emoji: "🏙️",
+    emoji: "🏟️",
     summary: [
-      "抵達羅馬，適應時差",
-      "感受永恆之城的氛圍",
-      "散步與美食的悠閒第一天"
+      "抵達羅馬，直奔競技場朝聖",
+      "Termini 寄行李，Mercato Centrale 吃 Bonci 冠軍披薩",
+      "13:10 競技場預約時段"
     ],
     highlights: [
-      "西班牙階梯早晨拍照（人潮最少）",
-      "特雷維許願池擲硬幣許願",
-      "第一杯道地 Gelato 冰淇淋"
+      "羅馬競技場內部參觀（含地下層）",
+      "聖克萊門特三層時光機教堂",
+      "Pastificio Guerra €5 站立式生麵"
     ],
     schedule: [
       { time: "06:25 - 07:45", activity: "抵達 Fiumicino 機場 ➔ 入境領行李", note: "預留 1.5 小時通關" },
-      { time: "08:00 - 09:00", activity: "機場快線 ➔ Termini ➔ 住宿點寄放行李", note: "Leonardo Express 直達" },
-      { time: "09:00 - 10:00", activity: "義式早餐體驗 @ Bar del Gambero", note: "站著喝 Cappuccino 配可頌" },
-      { time: "10:00 - 12:00", activity: "晨間散步：西班牙階梯 & 許願池", note: "趁沒人時盡情拍照！" },
-      { time: "12:00 - 13:30", activity: "午餐時光", note: "附近隨意享用輕食或 Pizza" },
-      { time: "14:00 - 17:00", activity: "Check-in & 補眠", note: "強烈建議睡個午覺調整時差" },
-      { time: "17:00 - 17:30", activity: "天使與殉教者聖母教堂", note: "參拜貝尼尼天使" },
-      { time: "17:30 - 18:00", activity: "Gelato 時光 @ La Strega Nocciola", note: "晚餐前的幸福甜點" },
-      { time: "18:00 - 19:30", activity: "晚餐 @ Pastificio Guerra", note: "簡單吃，享受羅馬夜晚氛圍" },
-      { time: "20:00 - 20:30", activity: "超市採買 & 回飯店", note: "買水、水果、早餐" },
-      { time: "21:00 ~", activity: "休息", note: "第一天別太晚睡" }
+      { time: "08:00 - 09:00", activity: "Leonardo Express ➔ Roma Termini", note: "€14/人，32 分鐘直達" },
+      { time: "09:00 - 10:00", activity: "🧳 寄放行李 @ Termini Deposito Bagagli", note: "月台 24 旁，€6/件" },
+      { time: "10:00 - 11:30", activity: "🥐 早午餐 @ Mercato Centrale Roma", note: "Bonci Pizza al taglio 🦐 Tre Rotelle 96 分！" },
+      { time: "11:30 - 12:30", activity: "Termini 周邊自由活動／休息", note: "車站有冷氣" },
+      { time: "12:30 - 13:00", activity: "🚇 地鐵 B 線 Termini ➔ Colosseo", note: "2 站" },
+      { time: "13:10 - 15:00", activity: "🏟️ 羅馬競技場（已預約）", note: "含地下層參觀" },
+      { time: "15:00 - 16:00", activity: "古羅馬廣場 & 帕拉提諾山", note: "聯票包含" },
+      { time: "16:00 - 16:30", activity: "聖克萊門特教堂（三層時光機）", note: "€10，競技場步行 3 分" },
+      { time: "16:30 - 17:00", activity: "🚇 Colosseo ➔ Termini 取行李", note: "1 站" },
+      { time: "17:00 - 18:00", activity: "🚇 A 線 Termini ➔ Spagna ➔ Check-in", note: "2 站至飯店" },
+      { time: "18:00 - 19:30", activity: "🍝 晚餐 @ Pastificio Guerra 🦐", note: "站立式 €5 新鮮生麵" },
+      { time: "19:30 - 20:00", activity: "🍨 Gelato @ La Strega Nocciola", note: "榛果與開心果必點" },
+      { time: "20:00~", activity: "超市採買 & 回飯店休息", note: "第一天別太晚睡" }
     ],
     transport: [
       { mode: "✈️ 飛機", detail: "桃園機場 ➔ 羅馬 Fiumicino 機場 (T3)" },
       { mode: "🚆 機場快線", detail: "Leonardo Express：Fiumicino ➔ Termini，€14，32 分鐘直達" },
-      { mode: "🚇 地鐵", detail: "Termini 搭乘 Metro A 線 (紅線)往 Battistini，Spagna 站下車" },
-      { mode: "🚶 步行", detail: "全程步行，各點之間 5-10 分鐘路程" }
+      { mode: "🚇 地鐵 B", detail: "Termini ➔ Colosseo，2 站，約 5 分鐘" },
+      { mode: "🚇 地鐵 A", detail: "Termini ➔ Spagna，2 站（飯店方向）" },
+      { mode: "🚶 步行", detail: "Colosseo→古羅馬廣場→聖克萊門特，各點步行 3 分鐘" }
     ],
     attractions: [
-      {
-        name: "西班牙階梯 (Spanish Steps)",
-        description: "羅馬最經典的電影場景之一。早晨 10 點前人潮最少，是最佳拍照時機。走上階梯中段回頭往下拍，可以拍到名牌大街的繁華視角。注意階梯上禁止飲食與坐下。",
-        tip: "旁邊有羅馬第一家麥當勞，裝潢華麗，Tiramisu 意外地好吃！",
-        image: "https://images.unsplash.com/photo-1761733133824-ab5b1d81e493?w=800"
-      },
-      {
-        name: "特雷維許願池 (Trevi Fountain)",
-        description: "羅馬最大、最華麗的巴洛克噴泉。建議走到噴泉右側角落，通常人比較少。若人太多，明天早上 8 點前再來完全沒人！",
-        tip: "背對噴泉用右手向左肩後方拋硬幣，保證會再回到羅馬！",
-        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
-      },
-      {
-        name: "天使與殉教者聖母教堂",
-        description: "收藏貝尼尼親手雕刻的天使像，免費入場的藝術寶庫。氣氛神聖寧靜，是避開人潮的好去處。",
-        tip: "這兩座天使像原本要放在聖天使橋上，因太美被收藏在此。",
-        image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
-      }
-    ],
-    food: [
-      { name: "Bar del Gambero", type: "早餐", recommend: "Cappuccino + Cornetto", price: "€3-5", address: "Via del Gambero, 30" },
-      { name: "La Strega Nocciola", type: "Gelato", recommend: "榛果 (Nocciola) 與開心果口味", price: "€3-5", address: "Via della Vite, 100" },
-      { name: "Pastificio Guerra", type: "晚餐", recommend: "每日兩種現煮生麵", price: "約 €5", address: "Via della Croce, 8" },
-      { name: "Pinsitaly Trevi", type: "備用晚餐", recommend: "Pinsa 羅馬式橢圓披薩", price: "€8-12", address: "Via della Panetteria, 12" }
-    ],
-    hotel: {
-      name: "西班牙階梯附近住宿",
-      address: "Spagna 地鐵站周邊",
-      note: "強烈建議住西班牙階梯步行可達範圍，充分利用早晨空檔"
-    },
-    tips: [
-      "穿厚底好走的球鞋，羅馬石板路多",
-      "帶空水壺，街頭 Nasone 小噴泉可生飲",
-      "後背包請背前面，注意防範扒手",
-      "有人靠近要綁幸運繩請堅定說 NO",
-      "盡量撐到當地晚上 9 點再睡以調整時差"
-    ],
-    mapEmbed: "https://www.google.com/maps/embed?q=Spanish+Steps+Rome+Italy"
-  },
-  {
-    day: 2,
-    date: "2026-07-23",
-    dayOfWeek: "週四",
-    title: "羅馬",
-    subtitle: "神鬼戰士與古城巡禮",
-    region: "羅馬",
-    emoji: "⚔️",
-    summary: [
-      "穿越時空回到古羅馬帝國",
-      "朝聖壯觀的競技場",
-      "漫步萬神殿與金杯咖啡"
-    ],
-    highlights: [
-      "羅馬競技場內部參觀",
-      "米開朗基羅《摩西像》",
-      "三層地下教堂探險",
-      "萬神殿的壯麗穹頂"
-    ],
-    schedule: [
-      { time: "08:00 - 08:30", activity: "早餐 @ 住宿附近", note: "簡單吃，早點出發" },
-      { time: "08:30 - 09:00", activity: "步行經鎖鏈堂 (San Pietro in Vincoli)", note: "朝聖米開朗基羅《摩西像》，早上人最少！" },
-      { time: "09:00 - 12:00", activity: "羅馬競技場 & 古羅馬廣場", note: "建議提前預約門票" },
-      { time: "12:00 - 12:45", activity: "聖克萊門特教堂 (San Clemente)", note: "三層時光機教堂，地下神殿必看" },
-      { time: "12:45 - 14:00", activity: "午餐 @ 附近餐廳", note: "品嚐地道義大利麵" },
-      { time: "14:30 - 16:00", activity: "萬神殿參觀", note: "欣賞古羅馬建築奇蹟" },
-      { time: "16:00 - 16:30", activity: "耶穌教堂 (Church of the Gesù)", note: "巴洛克天花板幻覺畫，免費入場" },
-      { time: "16:30 - 17:30", activity: "金杯咖啡 & 納沃納廣場", note: "羅馬最有名的咖啡店之一" },
-      { time: "18:00 - 19:30", activity: "晚餐", note: "品嚐羅馬經典料理" },
-      { time: "20:00 ~", activity: "夜間散步回住宿", note: "體驗羅馬夜晚的浪漫" }
-    ],
-    transport: [
-      { mode: "🚶 步行", detail: "從住宿步行至鎖鏈堂約 15 分鐘，再到競技場約 5 分鐘" },
-      { mode: "🚶 步行", detail: "競技場至聖克萊門特約 3 分鐘，再到餐廳區約 5 分鐘" },
-      { mode: "🚶 步行", detail: "萬神殿→耶穌教堂→納沃納廣場，全程步行 5-10 分鐘" }
-    ],
-    attractions: [
-      {
-        name: "聖伯多祿鎖鏈堂 (San Pietro in Vincoli)",
-        description: "收藏米開朗基羅曠世巨作《摩西像》——摩西頭上的「角」源自拉丁文聖經翻譯錯誤，成為藝術史上最著名的「美麗錯誤」。清晨人少，可獨享大師雕塑。",
-        tip: "免費入場，早上 8:30 幾乎無人，建議競技場前先來",
-        image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
-      },
       {
         name: "羅馬競技場 (Colosseum)",
         description: "古羅馬帝國最具代表性的建築，曾是角鬥士競技的場所。建議提前在官網預約門票，避免排隊等候。內部可參觀地下層結構與競技場平台。",
@@ -130,18 +52,102 @@ const itinerary = [
         description: "獨一無二的三層「時光機」教堂——地面層為 12 世紀中世紀教堂 → 地下層為 4 世紀早期基督教會 → 最深層為 1 世紀羅馬密特拉神殿，還能聽到地下水流聲。",
         tip: "門票 €10，三層全可參觀，小朋友會愛地下探險感",
         image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
+      }
+    ],
+    food: [
+      { name: "Mercato Centrale Roma", type: "早午餐", recommend: "Bonci Pizza al taglio（Tre Rotelle 96分）", price: "€5-10", address: "Via Giolitti, 36（Termini 旁）" },
+      { name: "Pastificio Guerra", type: "晚餐", recommend: "每日兩種現煮生麵", price: "約 €5", address: "Via della Croce, 8" },
+      { name: "La Strega Nocciola", type: "Gelato", recommend: "榛果與開心果口味", price: "€3-5", address: "Via della Vite, 100" },
+      { name: "Pinsitaly Trevi", type: "備用晚餐", recommend: "Pinsa 羅馬式橢圓披薩", price: "€8-12", address: "Via della Panetteria, 12" }
+    ],
+    hotel: {
+      name: "西班牙階梯附近住宿",
+      address: "Spagna 地鐵站周邊",
+      note: "先寄行李在 Termini，傍晚再 Check-in"
+    },
+    tips: [
+      "穿厚底好走的球鞋，羅馬石板路多",
+      "帶空水壺，街頭 Nasone 小噴泉可生飲",
+      "後背包請背前面，注意防範扒手",
+      "有人靠近要綁幸運繩請堅定說 NO",
+      "盡量撐到當地晚上 9 點再睡以調整時差",
+      "Termini 寄物處旺季排隊約 20-30 分，預留時間"
+    ],
+    mapEmbed: "https://www.google.com/maps/embed?q=Colosseum+Rome+Italy"
+  },
+  {
+    day: 2,
+    date: "2026-07-23",
+    dayOfWeek: "週四",
+    title: "羅馬",
+    subtitle: "永恆之城深度漫遊",
+    region: "羅馬",
+    emoji: "🏛️",
+    summary: [
+      "朝聖米開朗基羅《摩西像》",
+      "漫步萬神殿與金杯咖啡",
+      "下午補拍西班牙階梯與許願池"
+    ],
+    highlights: [
+      "米開朗基羅《摩西像》",
+      "萬神殿的壯麗穹頂",
+      "金杯咖啡 Granita al Caffè",
+      "耶穌教堂巴洛克幻覺天花板"
+    ],
+    schedule: [
+      { time: "08:00 - 08:30", activity: "早餐 @ 住宿附近", note: "簡單吃，早點出發" },
+      { time: "08:30 - 09:00", activity: "步行經鎖鏈堂 (San Pietro in Vincoli)", note: "朝聖《摩西像》，早上人最少！" },
+      { time: "09:00 - 10:30", activity: "萬神殿參觀", note: "上午光線穿過穹頂圓洞最美" },
+      { time: "10:30 - 11:30", activity: "金杯咖啡 & 納沃納廣場", note: "Granita al Caffè 必點" },
+      { time: "11:30 - 12:30", activity: "耶穌教堂 (Church of the Gesù)", note: "巴洛克幻覺天花板，免費入場" },
+      { time: "12:30 - 14:00", activity: "午餐 @ Trastevere", note: "Da Enzo al 29 或 Checco er Carettiere" },
+      { time: "14:00 - 15:00", activity: "天使與殉教者聖母教堂", note: "貝尼尼親雕天使像" },
+      { time: "15:00 - 16:30", activity: "西班牙階梯 & 特雷維許願池", note: "下午補拍照" },
+      { time: "16:30 - 17:30", activity: "自由時間 / 購物", note: "名牌大街或小巷探險" },
+      { time: "18:00 - 19:30", activity: "晚餐", note: "品嚐羅馬經典料理" },
+      { time: "20:00 ~", activity: "夜間散步回住宿", note: "體驗羅馬夜晚的浪漫" }
+    ],
+    transport: [
+      { mode: "🚶 步行", detail: "住宿→鎖鏈堂約 15 分，鎖鏈堂→萬神殿約 20 分" },
+      { mode: "🚶 步行", detail: "萬神殿→金杯咖啡→耶穌教堂→Trastevere，全程步行 5-15 分" },
+      { mode: "🚶 步行", detail: "Trastevere→天使教堂→西班牙階梯→許願池，全程步行 10-20 分" }
+    ],
+    attractions: [
+      {
+        name: "聖伯多祿鎖鏈堂 (San Pietro in Vincoli)",
+        description: "收藏米開朗基羅曠世巨作《摩西像》——摩西頭上的「角」源自拉丁文聖經翻譯錯誤，成為藝術史上最著名的「美麗錯誤」。清晨人少，可獨享大師雕塑。",
+        tip: "免費入場，早上 8:30 幾乎無人",
+        image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
       },
       {
         name: "萬神殿 (Pantheon)",
         description: "保存最完整的古羅馬建築，其混凝土穹頂至今仍是世界最大的無鋼筋穹頂。內部光線從頂部圓洞灑落，極具神聖感。",
-        tip: "免費入場，下午光線穿過穹頂圓洞最美",
+        tip: "免費入場，上午光線穿過穹頂圓洞最美",
         image: "https://images.unsplash.com/photo-1765572444403-53060b80678e?w=800"
       },
       {
         name: "耶穌教堂 (Church of the Gesù)",
         description: "全世界第一座耶穌會教堂，巴洛克風格的鼻祖。天花板壁畫《耶穌之名的勝利》是透視幻覺畫的巔峰——難以分辨何處是畫、何處是雕塑。",
-        tip: "免費入場，抬頭看天花板至少 5 分鐘，幻覺效果驚人",
+        tip: "免費入場，抬頭看天花板至少 5 分鐘",
         image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
+      },
+      {
+        name: "天使與殉教者聖母教堂",
+        description: "收藏貝尼尼親手雕刻的天使像，免費入場的藝術寶庫。氣氛神聖寧靜，是避開人潮的好去處。",
+        tip: "這兩座天使像原本要放在聖天使橋上，因太美被收藏在此。",
+        image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800"
+      },
+      {
+        name: "西班牙階梯 (Spanish Steps)",
+        description: "羅馬最經典的電影場景之一。走上階梯中段回頭往下拍，可以拍到名牌大街的繁華視角。注意階梯上禁止飲食與坐下。",
+        tip: "旁邊有羅馬第一家麥當勞，Tiramisu 意外地好吃！",
+        image: "https://images.unsplash.com/photo-1761733133824-ab5b1d81e493?w=800"
+      },
+      {
+        name: "特雷維許願池 (Trevi Fountain)",
+        description: "羅馬最大、最華麗的巴洛克噴泉。建議走到噴泉右側角落，通常人比較少。",
+        tip: "背對噴泉用右手向左肩後方拋硬幣，保證會再回到羅馬！",
+        image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800"
       }
     ],
     food: [
@@ -150,11 +156,12 @@ const itinerary = [
     ],
     hotel: { name: "西班牙階梯附近住宿", address: "Spagna 地鐵站周邊", note: "同第一天住宿" },
     tips: [
-      "競技場門票務必提前預約",
+      "鎖鏈堂免費，早點去避開旅行團",
+      "萬神殿免費入場，注意穿著（禁止短褲背心）",
       "注意防曬，七月羅馬非常炎熱",
       "隨身帶水壺補充水分"
     ],
-    mapEmbed: "https://www.google.com/maps/embed?q=Colosseum+Rome+Italy"
+    mapEmbed: "https://www.google.com/maps/embed?q=Pantheon+Rome+Italy"
   },
   {
     day: 3,
